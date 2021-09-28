@@ -28,7 +28,12 @@ public class EJController {
 
 	@Autowired
 	private BoardService boardService;
-
+	
+	@RequestMapping("/notice")
+	public String notice() {
+		return "el/Board/notice";
+	}
+	
 	@RequestMapping("/itemboard")
 	public String itemboard() {
 
