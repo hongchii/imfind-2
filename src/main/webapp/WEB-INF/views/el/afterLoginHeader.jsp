@@ -56,9 +56,11 @@
 							</ul>
 						</li>
 						<li class="has-dropdown">
-							<a href="#">분실물 등록 <i class="fas fa-sort-down"></i></a>
+							<a href="#">분실물 등록1 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<c:set var="user" value='${loginUser}'/>
+											<li><a href="./itemboard">물건</a></li>
+											<li><a href="./petboard">동물</a></li>	
+								<%-- <c:set var="user" value='${loginUser}'/>
 									<c:choose>
 										    <c:when test="${user eq null}">
 												<li><a href="./itemboard" onclick="return confirmWindow">물건</a></li>
@@ -68,13 +70,16 @@
 												<li><a href="./itemboard">물건</a></li>
 												<li><a href="./petboard">동물</a></li>		
 										    </c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 							</ul>
 						</li>
 						<li class="has-dropdown">
 							<a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<c:set var="user" value='${loginUser}'/>
+								<li><a href="./item">물건</a></li>
+								<li><a href="./pet">동물</a></li>		
+								
+								<%-- <c:set var="user" value='${loginUser}'/>
 									<c:choose>
 										    <c:when test="${user eq null}">
 												<li><a href="./item" onclick="return confirmWindow">물건</a></li>
@@ -84,13 +89,13 @@
 												<li><a href="./item">물건</a></li>
 												<li><a href="./pet">동물</a></li>		
 										    </c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 							</ul>
 						</li>
 							<li class="has-dropdown">
 							<a href="#">게시판 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<li><a href="#">공지사항</a></li>
+								<li><a href="./notice">공지사항</a></li>
 								<li><a href="#">자유게시판</a></li>
 							</ul>
 						</li>
@@ -123,7 +128,7 @@
 </nav>
 
 <script>
-function confirmWindow(){
+/* function confirmWindow(){
 	confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까');
-}
+} */
 </script>

@@ -207,8 +207,8 @@ section{
 </head>
 <body>
 
-   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-
+  <%--  <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>     --%>  
+	<jsp:include page="${request.contextPath}/el/NewHeader"></jsp:include>
     <!-- Header End -->
    <!-- Page Preloder -->
    <div id="preloder">
@@ -287,7 +287,7 @@ section{
       </div>
    </section>
 <script>
-	var id='<%=(String)session.getAttribute("loginUser")%>'
+<%-- 	var id='<%=(String)session.getAttribute("loginUser")%>' --%>
 </script>
    
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

@@ -755,7 +755,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <body>
 
 
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	<%-- <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> --%>
 
 	<root>
 	<div class="page"></div>

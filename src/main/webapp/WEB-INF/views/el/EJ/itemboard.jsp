@@ -218,7 +218,7 @@
 	  }
       </style>
       <script>
-      var id = '${loginUser}';
+   /*    var id = '${loginUser}'; */
       </script>    
    </head>
 <body>
@@ -249,7 +249,7 @@
                       <li class="has-dropdown">
                         <a href="">분실물 등록<i class="fas fa-sort-down"></i></a>
                         <ul class="dropdown">
-                           <li><a href="./itemboard">물건</a></li>
+                           <li><a href="./itemboard1">물건</a></li>
                            <li><a href="./petboard">동물</a></li>
                         </ul>
                      </li>
@@ -260,12 +260,12 @@
                            <li><a href="./pet">동물</a></li>
                         </ul>
                      </li>
-                     <c:if test="${loginUser} eq null">
+                     <%-- <c:if test="${loginUser} eq null">
                         <li class="btn-cta"><a href="./login"><span>Login</span></a></li> 
                         <li class="btn-cta"><a href="./register"><span >회원가입</span></a></li> 
                      </c:if>
                         <li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
-                        <li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li>                
+                        <li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li>           --%>      
                   </ul>
                </div>
             </div>

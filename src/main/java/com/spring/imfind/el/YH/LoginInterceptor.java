@@ -16,7 +16,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.spring.imfind.HomeController;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter implements SessionName {
-
+/*
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
 	@Override
@@ -55,5 +55,5 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 				response.addCookie(loginCookie);
 			}
 		}
-	}
+	}*/
 }
