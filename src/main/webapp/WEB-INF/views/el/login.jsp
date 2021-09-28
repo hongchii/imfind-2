@@ -150,7 +150,7 @@ div.container-fluid:nth-child(1) > div:nth-child(1) {
     </div>
 
     <!-- Header Section Begin -->
-   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
+    	<jsp:include page="${request.contextPath}/el/header"></jsp:include>	
     <!-- Header End -->
 	
 	<!-- 아이디 찾기, 비밀번호 찾기 선택 모달창 -->
