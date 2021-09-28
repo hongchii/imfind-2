@@ -8,13 +8,25 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 <!-- Root Context: defines shared resources visible to all other web components -->
-<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@3.36.85.242:1521:xe"  />
 		<property name="username" value="imfind"  />
 		<property name="password" value="123456"  />
+	</bean> -->
+	
+	<!-- for mysql -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/imfind" />
+		<property name="username" value="root" />
+		<property name="password" value="1234" />
 	</bean>
+	
 	<!-- sqlSession 객체 생성  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
