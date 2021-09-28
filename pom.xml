@@ -17,12 +17,12 @@
 	</properties>
 
 	<!-- oracle (변경된 부분 : 2017.06.12 현재 ) -->
-	<repositories>
+<!-- 	<repositories>
 		<repository>
 			<id>oracle</id>
 			<url>http://maven.jahia.org/maven2</url>
 		</repository>
-	</repositories>
+	</repositories> -->
 
 	<dependencies>
 		<!-- Spring -->
@@ -63,12 +63,18 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
+		    <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -156,16 +162,16 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<version>1.2.2</version>
 		</dependency>
 		<!-- connection pool 설정 끝 -->
 
 		<!-- oracle (변경된 부분 : 2017.06.12 현재 ) -->
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.2</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- Jackson JSON Mapper 시작 -->
 		<!-- jackson-core springframework 5.x.x에 사용 -->
@@ -299,24 +305,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.0</version>
-		    <scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
 		<!-- 21.09.28 추가 끝 -->
 
 	</dependencies>

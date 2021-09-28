@@ -25,14 +25,15 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<!-- 웹소켓을 위한 설정 -->
-<!-- 	<async-supported>true</async-supported>
+<!-- 	<async-supported>true</async-supported> -->
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 		<url-pattern>*.if</url-pattern>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
- -->
+
 	<!-- Korean Filter -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>

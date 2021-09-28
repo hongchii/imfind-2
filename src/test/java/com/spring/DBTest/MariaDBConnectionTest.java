@@ -1,3 +1,4 @@
+package com.spring.DBTest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
