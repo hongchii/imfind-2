@@ -41,4 +41,15 @@ public class NoticeController {
 		
 		return "redirect:/notice";
 	}
+	
+	@GetMapping("/noticeInfo")
+	public String noticeInfo(int noticeBno, Model model) throws Exception {
+		
+		System.out.println("----------->>>>> notice info controller ::: " + noticeBno);
+		NoticeVO vo = noticeService.getNoticeInfo(noticeBno);
+		System.out.println("----------->>>>> notice info controller vo ::: " + vo);
+		model.addAttribute("info", vo);
+		
+		return "el/Board/noticeInfo";
+	}
 }

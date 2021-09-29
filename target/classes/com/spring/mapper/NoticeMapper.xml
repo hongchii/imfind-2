@@ -14,4 +14,8 @@
 			(noticeBno, noticeTitle, id, noticeDate, noticeContent)
 		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent})
     </insert>
+    
+    <select id="getNoticeInfo" resultType="com.spring.imfind.el.domain.NoticeVO">
+    	SELECT * From imfind.NoticeBoard WHERE noticeBno = #{noticeBno}
+    </select>
     </mapper>

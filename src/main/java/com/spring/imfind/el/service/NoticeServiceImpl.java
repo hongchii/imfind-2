@@ -31,11 +31,22 @@ public class NoticeServiceImpl implements NoticeService {
 	public int noticeInsert(NoticeVO vo) throws Exception {
 		
 		System.out.println("---------->>>>> notice insert serviceImpl----------------");
+		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		int res = noticeMapper.noticeInsert(vo);
 		
-		
 		return res;
+	}
+
+	@Override
+	public NoticeVO getNoticeInfo(int noticeBno) throws Exception {
+		
+		System.out.println("---------->>>>> notice info serviceImpl----------------");
+		
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		NoticeVO vo = noticeMapper.getNoticeInfo(noticeBno);
+		
+		return vo;
 	}
 
 }
