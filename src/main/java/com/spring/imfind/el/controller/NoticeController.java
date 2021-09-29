@@ -20,11 +20,9 @@ public class NoticeController {
 	@GetMapping("/notice")
 	public String noticeList(Model model) throws Exception {
 		
-//		System.out.println("-----------controller1--------------");
-//		//model.addAttribute("notice", noticeService.getNoticeList());
-//		List<NoticeVO> list = noticeService.getNoticeList();
-//		model.addAttribute("notice", list);
-//		System.out.println("-----------controller2--------------");
+		model.addAttribute("notice", noticeService.getNoticeList());
+		System.out.println("----------->>>>> notice list controller--------------");
+		
 		return "el/Board/notice";
 	}
 	
@@ -39,7 +37,7 @@ public class NoticeController {
 		
 		System.out.println("notice insert controller ::: " + vo);
 		noticeService.noticeInsert(vo);
-		System.out.println("-----------controller2--------------");
+		System.out.println("----------->>>>> notice insert controller--------------");
 		
 		return "redirect:/notice";
 	}

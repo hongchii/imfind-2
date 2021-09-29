@@ -5,16 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 등록</title>
+
+<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
+ <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	
+	
+	
 	<!-- 게시판 등록 -->
+	
+	<div class="table_list_wrap" style="margin-left: 350px; margin-top: 80px;">
 	<form action="./addNotice" method="post" name="boardform"
 		enctype="multipart/form-data">
 		<table cellpadding="0" cellspacing="0">
 			<tr align="center" valign="middle">
 				<td colspan="5">공지사항</td>
 			</tr>
-			<td><input type="hidden" name="noticeBno" value="14"></td>
+
 			<tr>
 				<td style="font-family: 돋음; font-size: 12" height="16">
 					<div align="center">글쓴이</div>
@@ -45,5 +55,6 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

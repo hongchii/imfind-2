@@ -19,7 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVO> getNoticeList() throws Exception {
 
-		System.out.println("-----------------notice list serviceimpl----------------");
+		System.out.println("---------->>>>> notice list serviceimpl----------------");
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		List<NoticeVO> noticeList = noticeMapper.getNoticeList();
@@ -30,7 +30,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int noticeInsert(NoticeVO vo) throws Exception {
 		
-		System.out.println("-----------------notice insert serviceImpl----------------");
+		System.out.println("---------->>>>> notice insert serviceImpl----------------");
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		int res = noticeMapper.noticeInsert(vo);
 		

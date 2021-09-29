@@ -56,7 +56,7 @@
 							</ul>
 						</li>
 						<li class="has-dropdown">
-							<a href="#">분실물 등록1 <i class="fas fa-sort-down"></i></a>
+							<a href="#">분실물 등록 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
 											<li><a href="./itemboard">물건</a></li>
 											<li><a href="./petboard">동물</a></li>	
