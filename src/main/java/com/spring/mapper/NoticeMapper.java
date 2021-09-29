@@ -8,4 +8,5 @@ public interface NoticeMapper {
 
 	public List<NoticeVO> getNoticeList() throws Exception;
 	
+	public int noticeInsert(NoticeVO vo) throws Exception;
 }

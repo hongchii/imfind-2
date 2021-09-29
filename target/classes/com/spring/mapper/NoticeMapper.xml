@@ -5,7 +5,13 @@
     <mapper namespace="com.spring.mapper.NoticeMapper">
     
       <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
-	   		SELECT * From NoticeBoard
+	   		SELECT * From imfind.NoticeBoard
    	  </select>
     
+    
+    <insert id="noticeInsert" >
+    	INSERT INTO imfind.NoticeBoard
+			(noticeBno, noticeTitle, id, noticeDate, noticeContent)
+		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent})
+    </insert>
     </mapper>

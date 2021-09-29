@@ -296,15 +296,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.0</version>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- 21.09.28 추가 끝 -->
 
 	</dependencies>

@@ -7,4 +7,6 @@ import com.spring.imfind.el.domain.NoticeVO;
 public interface NoticeService {
 	
 	public List<NoticeVO> getNoticeList() throws Exception;
+	
+	public int noticeInsert(NoticeVO vo) throws Exception;
 }
