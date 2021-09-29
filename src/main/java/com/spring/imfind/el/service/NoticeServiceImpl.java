@@ -49,4 +49,13 @@ public class NoticeServiceImpl implements NoticeService {
 		return vo;
 	}
 
+	@Override
+	public int noticeModify(NoticeVO vo) throws Exception {
+		
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		int res = noticeMapper.noticeModify(vo);
+		
+		return res;
+	}
+
 }

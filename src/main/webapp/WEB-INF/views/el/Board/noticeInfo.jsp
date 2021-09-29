@@ -52,7 +52,13 @@
 						</tbody>
 					</table>
 				</div>
-
+				
+				<div class="btn_wrap right" style="margin-right: 100px;">
+					<!-- <a href="#none" class="btn del">삭제</a>  -->
+					<a href="./getModifyNotice?noticeBno=${info.noticeBno }" class="btn write" style="margin-right: 5px;">수정</a>
+					<a href="./notice" class="btn write" style="margin-right: 5px;">목록</a>
+					
+				</div>
 			</div>
 		</div>
 	</div>

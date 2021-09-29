@@ -52,4 +52,25 @@ public class NoticeController {
 		
 		return "el/Board/noticeInfo";
 	}
+	
+	@GetMapping("/getModifyNotice") 
+	public String noticeModify(int noticeBno, Model model) throws Exception {
+		
+		System.out.println("----------->>>>> notice modify controller ::: " + noticeBno);
+		NoticeVO vo = noticeService.getNoticeInfo(noticeBno);
+		System.out.println("----------->>>>> notice modify controller vo ::: " + vo);
+		model.addAttribute("info", vo);
+		
+		return "el/Board/noticeModify";
+	}
+	
+	@PostMapping("/modifyNotice")
+	public String noticeModify(NoticeVO vo) throws Exception {
+		
+		System.out.println("notice modify controller ::: " + vo);
+		noticeService.noticeModify(vo);
+		System.out.println("----------->>>>> notice modify controller--------------");
+		
+		return "redirect:/notice";
+	}
 }

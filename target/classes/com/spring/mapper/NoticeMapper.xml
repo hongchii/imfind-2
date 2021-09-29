@@ -18,4 +18,10 @@
     <select id="getNoticeInfo" resultType="com.spring.imfind.el.domain.NoticeVO">
     	SELECT * From imfind.NoticeBoard WHERE noticeBno = #{noticeBno}
     </select>
+    
+    <update id="noticeModify">
+    	UPDATE imfind.NoticeBoard SET
+    		noticeTitle=#{noticeTitle}, noticeContent=#{noticeContent}, noticeDate=now()
+    	WHERE noticeBno=#{noticeBno}
+    </update>
     </mapper>
