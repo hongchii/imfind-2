@@ -13,7 +13,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	
 	<div class="wrap">
 		<div class="content_wrap">
 			<div class="contents">
@@ -32,7 +32,37 @@
 						</colgroup>
 
 						<tbody>
-							<tr>
+						<tr>
+				<td style="font-family:돋음; font-size:12" height="16">
+					<div align="center">제 목&nbsp;&nbsp;</div>
+				</td>
+				
+				<td style="font-family:돋음; font-size:12">
+				${info.noticeTitle }
+				</td>
+			</tr>
+			
+			<tr bgcolor="cccccc">
+				<td colspan="2" style="height:1px;">
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="font-family:돋음; font-size:12">
+					<div align="center">내 용</div>
+				</td>
+				<td style="font-family:돋음; font-size:12">
+					<table border=0 width=490 height=250 style="table-layout:fixed">
+						<tr>
+							<td valign=top style="font-family:돋음; font-size:12">
+							${info.noticeContent }
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+							<%-- <tr>
 								<th>작성자</th>
 								<td colspan="3">${info.id }</td>
 							</tr>
@@ -48,17 +78,24 @@
 								<th>내용</th>
 								<td colspan="3"><textarea value="" disabled>${info.noticeContent }</textarea>
 								</td>
-							</tr>
+							</tr> --%>
 						</tbody>
 					</table>
 				</div>
-				
-				<div class="btn_wrap right" style="margin-right: 100px;">
-					<!-- <a href="#none" class="btn del">삭제</a>  -->
+					<tr align="center" valign="middle">
+						<td colspan="5">
+							<font size=2>
+							<a href="./getModifyNotice?noticeBno=${info.noticeBno }">[수정]</a>&nbsp;&nbsp;
+							<a href="#?num=${info.noticeBno }">[삭제]</a>&nbsp;&nbsp;
+							<a href="./notice">[목록]</a>&nbsp;&nbsp;
+							</font>
+						</td>
+					</tr>
+				<%-- <div class="btn_wrap right" style="margin-right: 100px;">
 					<a href="./getModifyNotice?noticeBno=${info.noticeBno }" class="btn write" style="margin-right: 5px;">수정</a>
 					<a href="./notice" class="btn write" style="margin-right: 5px;">목록</a>
 					
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

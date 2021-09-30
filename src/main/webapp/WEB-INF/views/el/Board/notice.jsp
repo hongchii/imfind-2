@@ -73,12 +73,16 @@
 					</table>
 				</div>
 
-				<div class="btn_wrap right" style="margin-right: 100px;">
+				<tr><td colspan="2">&nbsp;</td></tr>
+				<tr align="center" valign="middle">
+					<td colspan="5">
+						<font size=2>
 					<!-- <a href="#none" class="btn del">삭제</a>  -->
-					<a href="./insert" class="btn write" style="margin-right: 5px;">글쓰기</a>
-					<input type="button" class="btn del" id="deleteBtn" value="삭제"
-						onclick="check();" style="width: 82px;">
-				</div>
+					<a href="./insert">[등록]</a>&nbsp;&nbsp;
+					<a href="#">[삭제]</a>&nbsp;&nbsp;
+				</font>
+			</td>
+		</tr>
 
 
 
