@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.mapper.NoticeMapper;
@@ -15,7 +17,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private SqlSession sqlSession;
 	
-
 	@Override
 	public List<NoticeVO> getNoticeList() throws Exception {
 
@@ -37,7 +38,8 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return res;
 	}
-
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public NoticeVO getNoticeInfo(int noticeBno) throws Exception {
 		
@@ -45,6 +47,9 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		NoticeVO vo = noticeMapper.getNoticeInfo(noticeBno);
+		System.out.println("vo :: " + vo);
+		int res = noticeMapper.noticeReadCount(noticeBno);
+		System.out.println("res :: " + res);
 		
 		return vo;
 	}

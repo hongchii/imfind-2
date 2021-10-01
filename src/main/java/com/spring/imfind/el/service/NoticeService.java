@@ -15,4 +15,5 @@ public interface NoticeService {
 	public int noticeModify(NoticeVO vo) throws Exception;
 	
 	public int noticeDelete(NoticeVO vo) throws Exception;
+	
 }

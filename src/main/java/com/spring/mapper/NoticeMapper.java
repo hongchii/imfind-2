@@ -15,4 +15,6 @@ public interface NoticeMapper {
 	public int noticeModify(NoticeVO vo) throws Exception;
 	
 	public int noticeDelete(NoticeVO vo) throws Exception;
+	
+	public int noticeReadCount(int noticeBno) throws Exception;
 }
