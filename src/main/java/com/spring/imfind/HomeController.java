@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.imfind.el.EJ.BoardService;
-import com.spring.imfind.el.EJ.BoardVO;
 import com.spring.imfind.el.EJ.PetVO;
 import com.spring.imfind.el.MJ.IndexLostPostDTO;
-import com.spring.imfind.el.MJ.ItemService;
-import com.spring.imfind.el.MJ.ItemVO;
+import com.spring.imfind.el.domain.ItemVO;
+import com.spring.imfind.el.service.ItemService;
 import com.spring.imfind.imf.LostService;
 import com.spring.imfind.imf.PoliceVO;
 
@@ -31,14 +29,12 @@ public class HomeController {
 	LostService lostService;
 	@Autowired
 	ItemService itemService;
-	@Autowired
-	BoardService boardService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView modelAndView) throws Exception {
 		try {
-			List<BoardVO> list = boardService.gethighsetLostPay();
-			List<PetVO> list2 = boardService.gethighsetPetPay();
+			List<ItemVO> list = itemService.gethighsetLostPay();
+			List<PetVO> list2 = itemService.gethighsetPetPay();
 			// lost_pay_rank
 			ItemVO vo = new ItemVO();
 			List<ItemVO> list3 = itemService.lost_pay_rank(vo);
@@ -57,7 +53,7 @@ public class HomeController {
 			List<PetVO> petRank = itemService.pet_like_rank();
 
 			modelAndView.addObject("petvo", list2);
-			modelAndView.addObject("boardvo", list);
+			modelAndView.addObject("ItemVO", list);
 			modelAndView.addObject("lost_pay_rank", list3);
 			modelAndView.addObject("pet_pay_rank", list4);
 			modelAndView.addObject("lost_like_rank", lostRank);
@@ -76,7 +72,7 @@ public class HomeController {
 	public @ResponseBody Map<String, Object> listByRadius(@RequestParam("x") String x, @RequestParam("y") String y) {
 
 		List<PoliceVO> vo = lostService.getSimpleList(x, y);
-		List<BoardVO> boardVO;
+		List<ItemVO> ItemVO;
 		for (PoliceVO policeVO : vo) {
 			/* System.out.println(policeVO.toString()); */
 			try {

@@ -5,7 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.imfind.el.EJ.BoardVO;
+import com.spring.imfind.el.domain.ItemVO;
 import com.spring.mapper.YH.ChatMapper;
 
 @Service("chatService")
@@ -30,9 +30,9 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public BoardVO getBoardInfo(ChatDTO dto) {
+	public ItemVO getBoardInfo(ChatDTO dto) {
 		ChatMapper chatMapper = sqlSession.getMapper(ChatMapper.class);
-		BoardVO vo = chatMapper.getBoardInfo(dto);
+		ItemVO vo = chatMapper.getBoardInfo(dto);
 		return vo;
 	}
 

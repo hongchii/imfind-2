@@ -32,7 +32,7 @@
 	</select>
 
 	<select id="getBoardInfo" parameterType="ChatDTO"
-		resultType="BoardVO">
+		resultType="ItemVO">
 		SELECT * FROM lostpost
 		WHERE lost_postnum = #{lost_postnum}
 	</select>

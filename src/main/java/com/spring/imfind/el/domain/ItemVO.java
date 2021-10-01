@@ -1,9 +1,9 @@
 
-package com.spring.imfind.el.EJ;
+package com.spring.imfind.el.domain;
 
 import java.util.Date;
 
-public class BoardVO {
+public class ItemVO {
 	private int Lost_PostNum; // 글번호
 	private String Lost_Title; // 글제목
 	private String Lost_Content; // 글내용
@@ -57,18 +57,12 @@ public class BoardVO {
 		Lost_Re_Count = lost_Re_Count;
 	}
 
-//	public String getLost_Or_File() {
-//		return Lost_Or_File;
-//	}
-//	public void setLost_Or_File(String lost_Or_File) {
-//		Lost_Or_File = lost_Or_File;
-//	}
 	public String getLost_Up_File() {
 		return Lost_Up_File;
 	}
 
-	public String setLost_Up_File(String lost_Up_File) {
-		return Lost_Up_File = lost_Up_File;
+	public void setLost_Up_File(String lost_Up_File) {
+		Lost_Up_File = lost_Up_File;
 	}
 
 	public String getLost_Pay() {
@@ -121,9 +115,10 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [Lost_PostNum=" + Lost_PostNum + ", Lost_Title=" + Lost_Title + ", Lost_Content=" + Lost_Content
+		return "ItemVO [Lost_PostNum=" + Lost_PostNum + ", Lost_Title=" + Lost_Title + ", Lost_Content=" + Lost_Content
 				+ ", Lost_Re_Date=" + Lost_Re_Date + ", Lost_Re_Count=" + Lost_Re_Count + ", Lost_Up_File="
 				+ Lost_Up_File + ", Lost_Pay=" + Lost_Pay + ", Lost_Item=" + Lost_Item + ", Lost_Loc=" + Lost_Loc
-				+ ", Lost_Date=" + Lost_Date + ", Id=" + Id + "]";
+				+ ", Lost_Date=" + Lost_Date + ", Id=" + Id + ", PayCode=" + PayCode + "]";
 	}
+
 }

@@ -1,8 +1,6 @@
 
 package com.spring.imfind.el.Socket;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.imfind.el.EJ.BoardVO;
 import com.spring.imfind.el.YH.SessionName;
+import com.spring.imfind.el.domain.ItemVO;
 
 @Controller
 public class SocketController implements SessionName {
@@ -44,7 +41,7 @@ public class SocketController implements SessionName {
 			System.out.println("널"); // insert ChatDTO
 
 			int res = chatService.createChatRoom(chatDTO);
-			BoardVO board = chatService.getBoardInfo(chatDTO);
+			ItemVO board = chatService.getBoardInfo(chatDTO);
 			System.out.println(board.toString());
 			modelAndView.addObject("board", board);
 			modelAndView.addObject("chatDTO", chatDTO);

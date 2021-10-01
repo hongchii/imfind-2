@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.mapper.EJ.AdminMapper;
-import com.spring.mapper.EJ.BoardMapper;
 
 @Service
 public class AdiminServiceImpl implements AdminService {

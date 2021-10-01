@@ -1,12 +1,12 @@
 
 package com.spring.imfind.el.Socket;
 
-import com.spring.imfind.el.EJ.BoardVO;
+import com.spring.imfind.el.domain.ItemVO;
 
 public interface ChatService {
 	public int createChatRoom(ChatDTO dto);
 
 	public ChatDTO chkRoomExist(int postnum, String sender, String receiver);
 
-	public BoardVO getBoardInfo(ChatDTO dto);
+	public ItemVO getBoardInfo(ChatDTO dto);
 }
