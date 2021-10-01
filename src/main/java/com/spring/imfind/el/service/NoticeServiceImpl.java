@@ -1,6 +1,7 @@
 package com.spring.imfind.el.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.imfind.el.domain.NoticeVO;
+import com.spring.imfind.el.paging.Criteria;
 import com.spring.mapper.NoticeMapper;
 
 @Service("noticeService")
@@ -18,12 +20,12 @@ public class NoticeServiceImpl implements NoticeService {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<NoticeVO> getNoticeList() throws Exception {
+	public List<Map<String, Object>> getNoticeList(Criteria cri) throws Exception {
 
 		System.out.println("---------->>>>> notice list serviceimpl----------------");
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
-		List<NoticeVO> noticeList = noticeMapper.getNoticeList();
+		List<Map<String, Object>> noticeList = noticeMapper.getNoticeList(cri);
 
 		return noticeList;
 	}

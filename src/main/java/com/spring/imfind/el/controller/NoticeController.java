@@ -1,12 +1,19 @@
 package com.spring.imfind.el.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.imfind.el.domain.NoticeVO;
+import com.spring.imfind.el.paging.Criteria;
+import com.spring.imfind.el.paging.PageMaker;
 import com.spring.imfind.el.service.NoticeService;
 
 @Controller
@@ -16,7 +23,7 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
-
+	/*
 	@GetMapping("/notice")
 	public String noticeList(Model model) throws Exception {
 		
@@ -24,6 +31,24 @@ public class NoticeController {
 		System.out.println("----------->>>>> notice list controller--------------");
 		
 		return "el/Board/notice";
+	}
+	*/
+	
+	@RequestMapping(value="/notice")
+	public ModelAndView openBoardList(Criteria cri) throws Exception {
+	        
+	    ModelAndView mav = new ModelAndView("/notice");
+	        
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(100);
+	        
+	    List<Map<String,Object>> list = noticeService.getNoticeList(cri);
+	    mav.addObject("list", list);
+	    mav.addObject("pageMaker", pageMaker);
+	        
+	    return mav;
+	        
 	}
 	
 	@GetMapping("/insert")

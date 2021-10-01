@@ -1,12 +1,14 @@
 package com.spring.imfind.el.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.imfind.el.domain.NoticeVO;
+import com.spring.imfind.el.paging.Criteria;
 
 public interface NoticeService {
 	
-	public List<NoticeVO> getNoticeList() throws Exception;
+	public List<Map<String, Object>> getNoticeList(Criteria cri) throws Exception;
 	
 	public int noticeInsert(NoticeVO vo) throws Exception;
 	

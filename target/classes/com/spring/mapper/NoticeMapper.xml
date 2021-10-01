@@ -5,7 +5,7 @@
     <mapper namespace="com.spring.mapper.NoticeMapper">
     
     <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
-	   	SELECT * From imfind.NoticeBoard WHERE delYN = "N" order by noticeBno desc
+	   	SELECT * From imfind.NoticeBoard WHERE delYN = "N" order by noticeBno desc limit #{pageStart}, #{perPageNum}
    	</select>
     
     <insert id="noticeInsert" >
