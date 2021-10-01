@@ -36,6 +36,7 @@ public class NoticeController {
 	public String noticeInsert(NoticeVO vo) throws Exception {
 		
 		System.out.println("notice insert controller ::: " + vo);
+		vo.setDelYN("N");
 		noticeService.noticeInsert(vo);
 		System.out.println("----------->>>>> notice insert controller--------------");
 		
@@ -70,6 +71,16 @@ public class NoticeController {
 		System.out.println("notice modify controller ::: " + vo);
 		noticeService.noticeModify(vo);
 		System.out.println("----------->>>>> notice modify controller--------------");
+		
+		return "redirect:/notice";
+	}
+	
+	@GetMapping("/deleteNotice")
+	public String noticeDelete(NoticeVO vo) throws Exception {
+		
+		vo.setDelYN("Y");
+		int res = noticeService.noticeDelete(vo);
+		System.out.println("----------->>>>> notice delete controller--------------");
 		
 		return "redirect:/notice";
 	}

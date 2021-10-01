@@ -86,7 +86,7 @@
 						<td colspan="5">
 							<font size=2>
 							<a href="./getModifyNotice?noticeBno=${info.noticeBno }">[수정]</a>&nbsp;&nbsp;
-							<a href="#?num=${info.noticeBno }">[삭제]</a>&nbsp;&nbsp;
+							<a href="./deleteNotice?noticeBno=${info.noticeBno }">[삭제]</a>&nbsp;&nbsp;
 							<a href="./notice">[목록]</a>&nbsp;&nbsp;
 							</font>
 						</td>

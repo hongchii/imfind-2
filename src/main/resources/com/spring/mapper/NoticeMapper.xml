@@ -5,14 +5,14 @@
     <mapper namespace="com.spring.mapper.NoticeMapper">
     
       <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
-	   		SELECT * From imfind.NoticeBoard order by noticeBno desc
+	   		SELECT * From imfind.NoticeBoard WHERE delYN = "N" order by noticeBno desc
    	  </select>
     
     
     <insert id="noticeInsert" >
     	INSERT INTO imfind.NoticeBoard
-			(noticeBno, noticeTitle, id, noticeDate, noticeContent)
-		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent})
+			(noticeBno, noticeTitle, id, noticeDate, noticeContent, delYN)
+		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent}, #{delYN})
     </insert>
     
     <select id="getNoticeInfo" resultType="com.spring.imfind.el.domain.NoticeVO">
@@ -22,6 +22,12 @@
     <update id="noticeModify">
     	UPDATE imfind.NoticeBoard SET
     		noticeTitle=#{noticeTitle}, noticeContent=#{noticeContent}, noticeDate=now()
+    	WHERE noticeBno=#{noticeBno}
+    </update>
+    
+    <update id="noticeDelete">
+    	UPDATE imfind.NoticeBoard SET
+    		delYN=#{delYN}
     	WHERE noticeBno=#{noticeBno}
     </update>
     </mapper>

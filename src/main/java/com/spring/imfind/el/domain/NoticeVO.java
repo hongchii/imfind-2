@@ -8,6 +8,7 @@ public class NoticeVO {
 	private String id; // 글작성자
 	private String noticeDate; // 글작성일
 	private int readcount; // 조회수
+	private String delYN; // 삭제여
 
 	public int getNoticeBno() {
 		return noticeBno;
@@ -57,10 +58,18 @@ public class NoticeVO {
 		this.readcount = readcount;
 	}
 
+	public String getDelYN() {
+		return delYN;
+	}
+
+	public void setDelYN(String delYN) {
+		this.delYN = delYN;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeBno=" + noticeBno + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", id=" + id + ", noticeDate=" + noticeDate + ", readcount=" + readcount + "]";
+				+ ", id=" + id + ", noticeDate=" + noticeDate + ", readcount=" + readcount + ", delYN=" + delYN + "]";
 	}
 
 }
