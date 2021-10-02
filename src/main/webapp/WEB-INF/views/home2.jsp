@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.imfind.imf.PoliceVO"%>
 <%@ page import="com.spring.imfind.el.YH.LoginDTO"%>
-<%@ page import="com.spring.imfind.el.EJ.BoardVO"%>
+<%@ page import="com.spring.imfind.el.domain.ItemVO"%>
 <%@ page import="com.spring.imfind.el.EJ.PetVO"%>
-<%@ page import="com.spring.imfind.el.MJ.ItemVO"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Date"%>
@@ -26,7 +25,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <%
-	List<BoardVO> boardvo = (List<BoardVO>) request.getAttribute("boardvo");
+	List<ItemVO> boardvo = (List<ItemVO>) request.getAttribute("boardvo");
 	List<PetVO> petvo = (List<PetVO>) request.getAttribute("petvo");
 	//lost_pay_rank
     List<ItemVO> list3 = (List<ItemVO>) request.getAttribute("lost_pay_rank");
