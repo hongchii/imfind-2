@@ -34,4 +34,9 @@
     <update id="noticeReadCount">
     	UPDATE imfind.NoticeBoard SET readcount = readcount + 1 WHERE noticeBno=#{noticeBno}
     </update>
+    
+    <update id="noticeArrDelete" parameterType="int">
+   		UPDATE imfind.NoticeBoard SET delYN="Y" WHERE noticeBno=#{noticeBno}
+  	</update>  
+    
     </mapper>

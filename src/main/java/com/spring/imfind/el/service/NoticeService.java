@@ -19,4 +19,6 @@ public interface NoticeService {
 	public int noticeDelete(NoticeVO vo) throws Exception;
 	
 	public int getNoticeCount() throws Exception;
+	
+	public int noticeArrDelete(int noticeBno) throws Exception;
 }

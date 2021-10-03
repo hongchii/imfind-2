@@ -1,5 +1,8 @@
 package com.spring.imfind.el.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.imfind.el.domain.NoticeVO;
@@ -109,4 +114,44 @@ public class NoticeController {
 		
 		return "redirect:/notice";
 	}
+	
+	@RequestMapping("/deleteArrNotice")
+	@ResponseBody
+	public Map<String, String> noticeArrDelete(@RequestParam(value = "noticeBno[]", required = false) String[] noticeBno)
+			throws Exception {
+
+		ArrayList<String> data = new ArrayList<String>();
+		Map<String, String> map = new HashMap<String,String>();
+		
+		for (String bno : noticeBno) {
+			System.out.println("board_seq 컨트롤러 " + bno);
+
+			int noticeBno1 = Integer.parseInt(bno);
+			int res = noticeService.noticeArrDelete(noticeBno1);
+
+			if (res > 0) {
+				System.out.println("성공");
+				data.add("success");
+				
+			} else {
+				System.out.println("실패");
+				data.add("fail");
+			}
+
+		}
+
+		Iterator<String> itr = data.iterator();
+		while (itr.hasNext()) {
+			String result = itr.next();
+			if ("fail".equals(result)) {
+				map.put("RESULT", "fail");
+				return map;
+			}
+		}
+		
+		map.put("RESULT", "success");
+		return map;
+
+	}
+
 }

@@ -81,10 +81,23 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int getNoticeCount() throws Exception {
 		
+		System.out.println("---------->>>>> notice count serviceImpl----------------");
+		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		int res = noticeMapper.getNoticeCount();
 		
 		return res;
 	}
-
+	
+	@Override
+	public int noticeArrDelete(int noticeBno) throws Exception {
+		
+		System.out.println("---------->>>>> notice ArrDelete serviceImpl----------------");
+		
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		int res = noticeMapper.noticeArrDelete(noticeBno);
+		
+		return res;
+		
+	}
 }

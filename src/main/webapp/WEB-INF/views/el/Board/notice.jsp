@@ -11,6 +11,58 @@
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script>
+function check() {
+		
+	var confirm_val = confirm("정말 삭제하시겠습니까?");
+		
+		if(confirm_val) {
+			
+			
+			var cnt = $("input[name='notice_del_yn']:checked").length; // 체크된것의 갯수를 구함.
+			var noticeBno = new Array(); // 체크된 것의 bno를  배열에 담기위해. 
+			$("input[name='notice_del_yn']:checked").each(function() {
+				
+				noticeBno.push($(this).attr('id'));
+				//each함수를 사용해 체크된 것의 id = bno 를 checkArr 배열에 담아줌.
+				
+			});
+			delBno(noticeBno);
+			console.log("체크1 ====> " + noticeBno)
+			
+		} else {
+			
+			alert("#");
+			
+		}
+	
+}	
+function delBno(noticeBno) {
+		console.log("체크2 ====> " + noticeBno)
+		
+		$.ajax({
+			  url : '/deleteArrNotice',
+			  contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			  data : { "noticeBno" : noticeBno },
+			  type : 'POST',
+			  dataType : 'JSON',
+			  success : function(data){
+				  	console.log("console--" + data);
+				 	if(data.RESULT == 'success') {
+				 		alert("삭제 성공")
+				 		location.href = "/notice";
+				 	} else {
+				 		alert("삭제 실패")
+				 	}
+			  },//success끝
+			  error:function(request,status,error){
+			        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			  }
+		  }); 
+		  
+}
+</script>
+	
 </head>
 <body>
 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
@@ -51,9 +103,9 @@
 						<tbody class="text-center">
 							<c:forEach items="${notice }" var="notice">
 								<tr>
-									<td><input type="checkbox" id=${notice.noticeBno }
-										name="board_del_yn" value="y"></td>
-									<td><c:out value="${notice.noticeBno }" /></td>
+									<td><input type="checkbox" id="${notice.noticeBno }"
+										name="notice_del_yn" value=""></td>
+									<%-- <td><c:out value="${notice.noticeBno }" /></td> --%>
 									<td class="left"><a
 										href="/noticeInfo?noticeBno=${notice.noticeBno }"> <c:out
 												value="${notice.noticeTitle }" />
@@ -78,8 +130,10 @@
 					<td colspan="5">
 						<font size=2>
 					<!-- <a href="#none" class="btn del">삭제</a>  -->
-					<a href="./insert">[등록]</a>&nbsp;&nbsp;
-					<a href="#">[삭제]</a>&nbsp;&nbsp;
+					<<!-- a href="./insert">[등록]</a>&nbsp;&nbsp;
+					<a href="#">[삭제]</a>&nbsp;&nbsp; -->
+					<a href="./insert" class="btn write" style="margin-right: 5px;">등록</a>
+					<input type="button" class="btn del" id="deleteBtn" value="삭제" onclick="check();" style="width: 82px;">
 				</font>
 			</td>
 		</tr>
