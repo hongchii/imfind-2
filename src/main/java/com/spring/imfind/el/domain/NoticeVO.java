@@ -8,7 +8,7 @@ public class NoticeVO {
 	private String id; // 글작성자
 	private String noticeDate; // 글작성일
 	private int readcount; // 조회수
-	private String delYN; // 삭제여
+	private String delYN; // 삭제여부 
 
 	public int getNoticeBno() {
 		return noticeBno;

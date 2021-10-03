@@ -37,14 +37,14 @@ public class NoticeController {
 	@RequestMapping(value="/notice")
 	public ModelAndView openBoardList(Criteria cri) throws Exception {
 	        
-	    ModelAndView mav = new ModelAndView("/notice");
+	    ModelAndView mav = new ModelAndView("el/Board/notice");
 	        
 	    PageMaker pageMaker = new PageMaker();
 	    pageMaker.setCri(cri);
-	    pageMaker.setTotalCount(100);
+	    pageMaker.setTotalCount(noticeService.getNoticeCount());
 	        
 	    List<Map<String,Object>> list = noticeService.getNoticeList(cri);
-	    mav.addObject("list", list);
+	    mav.addObject("notice", list);
 	    mav.addObject("pageMaker", pageMaker);
 	        
 	    return mav;

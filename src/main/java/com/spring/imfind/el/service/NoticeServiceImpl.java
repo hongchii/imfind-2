@@ -77,5 +77,14 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return res;
 	}
+	
+	@Override
+	public int getNoticeCount() throws Exception {
+		
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		int res = noticeMapper.getNoticeCount();
+		
+		return res;
+	}
 
 }

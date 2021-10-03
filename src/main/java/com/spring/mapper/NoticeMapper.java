@@ -19,4 +19,6 @@ public interface NoticeMapper {
 	public int noticeDelete(NoticeVO vo) throws Exception;
 	
 	public int noticeReadCount(int noticeBno) throws Exception;
+	
+	public int getNoticeCount() throws Exception;
 }
