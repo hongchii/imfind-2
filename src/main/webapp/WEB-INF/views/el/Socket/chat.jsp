@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page session  = "true" %>
-<%@ page import="com.spring.imfind.el.EJ.BoardVO" %>
+<%@ page import="com.spring.imfind.el.domain.ItemVO" %>
 
 <!DOCTYPE html>
 <html>
