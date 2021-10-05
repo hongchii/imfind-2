@@ -5,7 +5,7 @@
     <mapper namespace="com.spring.mapper.NoticeMapper">
     
     <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
-	   	SELECT * From imfind.NoticeBoard WHERE delYN = "N" order by noticeBno desc limit #{pageStart}, #{perPageNum}
+	   	SELECT * From imfind.NoticeBoard WHERE delYN = "1" order by noticeBno desc limit #{pageStart}, #{perPageNum}
    	</select>
     
     <insert id="noticeInsert" >
@@ -15,7 +15,7 @@
     </insert>
     
     <select id="getNoticeCount" resultType="Integer">
-    	<![CDATA[ SELECT count(*) From imfind.NoticeBoard WHERE delYN = "N" ]]>
+    	<![CDATA[ SELECT count(*) From imfind.NoticeBoard WHERE delYN = "1" ]]>
     </select>
     <select id="getNoticeInfo" resultType="com.spring.imfind.el.domain.NoticeVO">
     	SELECT * From imfind.NoticeBoard WHERE noticeBno = #{noticeBno}
@@ -36,7 +36,7 @@
     </update>
     
     <update id="noticeArrDelete" parameterType="int">
-   		UPDATE imfind.NoticeBoard SET delYN="Y" WHERE noticeBno=#{noticeBno}
+   		UPDATE imfind.NoticeBoard SET delYN="0" WHERE noticeBno=#{noticeBno}
   	</update>  
     
     </mapper>

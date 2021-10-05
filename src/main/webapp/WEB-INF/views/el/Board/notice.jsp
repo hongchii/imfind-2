@@ -85,14 +85,12 @@ function delBno(noticeBno) {
 							<col style="width: 10%;" />
 							<col style="width: 15%;" />
 							<col style="width: 10%;" />
-							<col style="width: 35%;" />
 							<col style="width: 10%;" />
 			
 						</colgroup>
 						<thead>
 							<tr>
 								<th></th>
-								<th>글번호</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<!-- <th>내용</th> -->

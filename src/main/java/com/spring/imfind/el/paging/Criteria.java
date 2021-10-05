@@ -10,7 +10,7 @@ public class Criteria {
 
 	public Criteria() {
 		this.page = 1; // 현재페이지
-		this.perPageNum = 5; // 보여줄 게시글의 수
+		this.perPageNum = 10; // 보여줄 게시글의 수
 	} // 처음 게시판에 들어왔을때 기본생성자를 통해 기본 값 셋팅
 
 	public int getPage() {
