@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.imfind.el.domain.ItemVO;
-import com.spring.mapper.YH.ChatMapper;
+import com.spring.mapper.ChatMapper;
 
 @Service("chatService")
 public class ChatServiceImpl implements ChatService {

@@ -1,5 +1,5 @@
 
-package com.spring.mapper.YS;
+package com.spring.mapper;
 
 import java.util.List;
 import com.spring.imfind.el.YS.ElVO;

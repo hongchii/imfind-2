@@ -1,4 +1,4 @@
-package com.spring.imfind.el.MJ;
+package com.spring.imfind.el.controller;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,5 @@
 
-package com.spring.mapper.YH;
+package com.spring.mapper;
 
 import java.util.List;
 

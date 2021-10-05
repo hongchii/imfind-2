@@ -1,4 +1,4 @@
-package com.spring.imfind.el.EJ;
+package com.spring.imfind.el.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;

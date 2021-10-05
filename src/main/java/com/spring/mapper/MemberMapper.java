@@ -1,4 +1,4 @@
-package com.spring.mapper.YH;
+package com.spring.mapper;
 
 import org.apache.ibatis.annotations.Param;
 

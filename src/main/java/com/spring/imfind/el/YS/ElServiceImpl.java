@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.mapper.YS.ElMapper;
+import com.spring.mapper.ElMapper;
 
 @Service("elService")
 public class ElServiceImpl implements ElService {

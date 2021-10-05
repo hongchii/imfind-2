@@ -27,7 +27,7 @@
 	</insert>
 
 	<select id="getPayMember"
-		resultType="com.spring.imfind.el.EJ.MemberVO">
+		resultType="com.spring.imfind.el.domain.MemberVO">
 		SELECT id, Name, Contact, Email from Member
 		WHERE id=#{id}
 	</select>

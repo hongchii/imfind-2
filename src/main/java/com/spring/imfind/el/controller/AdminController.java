@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.imfind.el.EJ.PaymentCheck;
+import com.spring.imfind.el.common.PaymentCheck;
 import com.spring.imfind.el.domain.MemberVO;
 import com.spring.imfind.el.domain.PayVO;
 import com.spring.imfind.el.service.AdminService;

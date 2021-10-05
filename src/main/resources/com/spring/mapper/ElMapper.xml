@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.mapper.YS.ElMapper">
+<mapper namespace="com.spring.mapper.ElMapper">
 
 	<select id="getElsedata" parameterType="String"
 		resultType="ElVO">

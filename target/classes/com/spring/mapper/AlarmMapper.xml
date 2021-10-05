@@ -3,7 +3,7 @@
 
 <!--유희 : 로그인과 회원가입에 필요한 mapper 입니다. -->
 
-<mapper namespace="com.spring.mapper.YH.AlarmMapper">
+<mapper namespace="com.spring.mapper.AlarmMapper">
 	
 	<insert id="insertAlarm" parameterType="AlarmDTO">
 		insert into alarm_list 

@@ -3,7 +3,7 @@
 
 <!--유희 : 로그인과 회원가입에 필요한 mapper 입니다. -->
 
-<mapper namespace="com.spring.mapper.YH.MemberMapper">
+<mapper namespace="com.spring.mapper.MemberMapper">
 	
 	<select id="loginCheck" parameterType="map" resultType="int">
 		Select
@@ -69,7 +69,7 @@
 		#{account_num},
 		#{bank},
 		#{account_holder},
-		sysdate
+		now()
 		)
 	</insert>
 	<!-- MJ Email chk -->
