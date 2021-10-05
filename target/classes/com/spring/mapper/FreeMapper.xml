@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.spring.mapper.FreeMapper">
+    
+    <select id="getFreeList" resultType="com.spring.imfind.el.domain.FreeVO">
+	   	SELECT * From imfind.FreeBoard WHERE delYN = "1" order by freeBno desc limit #{pageStart}, #{perPageNum}
+   	</select>
+    
+    <insert id="freeInsert" >
+    	INSERT INTO imfind.FreeBoard
+			(freeBno, freeTitle, id, freeDate, freeContent, delYN)
+		VALUES(#{freeBno}, #{freeTitle}, #{id}, now(), #{freeContent}, #{delYN})
+    </insert>
+    
+    <select id="getFreeCount" resultType="Integer">
+    	<![CDATA[ SELECT count(*) From imfind.FreeBoard WHERE delYN = "1" ]]>
+    </select>
+    <select id="getFreeInfo" resultType="com.spring.imfind.el.domain.FreeVO">
+    	SELECT * From imfind.FreeBoard WHERE freeBno = #{freeBno}
+    </select>
+    
+    <update id="freeModify">
+    	UPDATE imfind.FreeBoard SET
+    		freeTitle=#{freeTitle}, freeContent=#{freeContent}, freeDate=now()
+    	WHERE freeBno=#{freeBno}
+    </update>
+    
+    <update id="freeDelete">
+    	UPDATE imfind.FreeBoard SET delYN=#{delYN} WHERE freeBno=#{freeBno}
+    </update>
+    
+    <update id="freeReadCount">
+    	UPDATE imfind.FreeBoard SET readcount = readcount + 1 WHERE freeBno=#{freeBno}
+    </update>
+    
+    <update id="freeArrDelete" parameterType="int">
+   		UPDATE imfind.FreeBoard SET delYN="0" WHERE freeBno=#{freeBno}
+  	</update>  
+    
+    </mapper>

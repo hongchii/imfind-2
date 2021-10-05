@@ -96,7 +96,7 @@
 							<a href="#">게시판 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
 								<li><a href="./notice">공지사항</a></li>
-								<li><a href="#">자유게시판</a></li>
+								<li><a href="./free">자유게시판</a></li>
 							</ul>
 						</li>
 						
