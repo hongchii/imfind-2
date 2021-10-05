@@ -72,7 +72,7 @@ public class FreeServiceImpl implements FreeService {
 		System.out.println("---------->>>>> free delete serviceImpl----------------");
 		
 		FreeMapper freeMapper = sqlSession.getMapper(FreeMapper.class);
-		int res = freeMapper.freeModify(vo);
+		int res = freeMapper.freeDelete(vo);
 		
 		return res;
 	}
