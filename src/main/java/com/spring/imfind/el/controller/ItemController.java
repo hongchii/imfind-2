@@ -103,9 +103,9 @@ public class ItemController {
 	public void summer_image(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		response.setContentType("text/html;charset=utf-8");
-		// String uploadPath = "/Users/hongmac/Documents/upload/";
+		String uploadPath = "/Users/hongmac/Documents/upload/";
 		// String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
-		String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
 		PrintWriter out = response.getWriter();
 		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
 
@@ -151,8 +151,8 @@ public class ItemController {
 		String content = petvo.getPet_Content();
 		Matcher match = pattern.matcher(content);
 		String pet_Up_File = null;
-		// String uploadPath = "/Users/hongmac/Documents/upload/";
-		String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		String uploadPath = "/Users/hongmac/Documents/upload/";
+		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
 
 		if (match.find()) {
 			pet_Up_File = match.group(0);
@@ -523,8 +523,8 @@ public class ItemController {
 			String content = vo.getLost_Content();
 			Matcher match = pattern.matcher(content);
 			String Lost_Up_File = null;
-			String uploadPath = "C:\\Project\\WebProject\\upload\\";
-			// String uploadPath = "/Users/hongmac/Documents/upload/";
+			//String uploadPath = "C:\\Project\\WebProject\\upload\\";
+			String uploadPath = "/Users/hongmac/Documents/upload/";
 
 			if (match.find()) {
 				Lost_Up_File = match.group(0);
@@ -573,8 +573,8 @@ public class ItemController {
 			String content = vo.getPet_Content();
 			Matcher match = pattern.matcher(content);
 			String Lost_Up_File = null;
-			String uploadPath = "C:\\Project\\WebProject\\upload\\";
-			// String uploadPath = "/Users/hongmac/Documents/upload/";
+			// String uploadPath = "C:\\Project\\WebProject\\upload\\";
+			String uploadPath = "/Users/hongmac/Documents/upload/";
 
 			if (match.find()) {
 				Lost_Up_File = match.group(0);

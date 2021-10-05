@@ -399,7 +399,7 @@
 </section>
       <!--게시글 등록 js 시작-은지 -->
        <script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script> 
-    <!--게시글 등록 js 끝-은지 -->
+   	  <!--게시글 등록 js 끝-은지 -->
        <!-- 아임포트 시작-->
       <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
       <!-- 아임포트 끝-->
