@@ -1,7 +1,10 @@
 
-package com.spring.imfind.el.EJ;
+package com.spring.imfind.el.service;
 
 import java.util.List;
+
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.imfind.el.domain.PayVO;
 
 public interface AdminService {
 	public List<MemberVO> getMemberList();

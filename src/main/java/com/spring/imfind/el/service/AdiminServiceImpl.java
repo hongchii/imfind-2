@@ -1,4 +1,4 @@
-package com.spring.imfind.el.EJ;
+package com.spring.imfind.el.service;
 
 import java.util.List;
 
@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.mapper.EJ.AdminMapper;
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.imfind.el.domain.PayVO;
+import com.spring.mapper.AdminMapper;
 
 @Service
 public class AdiminServiceImpl implements AdminService {

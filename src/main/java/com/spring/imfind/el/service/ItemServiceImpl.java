@@ -7,14 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.imfind.el.EJ.ComVO;
-import com.spring.imfind.el.EJ.LostComVO;
-import com.spring.imfind.el.EJ.MemberVO;
-import com.spring.imfind.el.EJ.PayVO;
-import com.spring.imfind.el.EJ.PetVO;
-import com.spring.imfind.el.EJ.replyVO;
 import com.spring.imfind.el.MJ.IndexLostPostDTO;
+import com.spring.imfind.el.domain.ComVO;
 import com.spring.imfind.el.domain.ItemVO;
+import com.spring.imfind.el.domain.LostComVO;
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.imfind.el.domain.PayVO;
+import com.spring.imfind.el.domain.PetVO;
+import com.spring.imfind.el.domain.replyVO;
 import com.spring.mapper.ItemMapper;
 
 @Service("ItemService")

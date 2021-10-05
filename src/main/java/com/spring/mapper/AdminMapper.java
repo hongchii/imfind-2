@@ -1,10 +1,10 @@
 
-package com.spring.mapper.EJ;
+package com.spring.mapper;
 
 import java.util.List;
 
-import com.spring.imfind.el.EJ.MemberVO;
-import com.spring.imfind.el.EJ.PayVO;
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.imfind.el.domain.PayVO;
 
 public interface AdminMapper {
 	public List<MemberVO> getMemberList();

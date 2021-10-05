@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.imfind.el.EJ.ComVO;
-import com.spring.imfind.el.EJ.LostComVO;
-import com.spring.imfind.el.EJ.MemberVO;
-import com.spring.imfind.el.EJ.PayVO;
-import com.spring.imfind.el.EJ.PetVO;
-import com.spring.imfind.el.EJ.replyVO;
+import com.spring.imfind.el.domain.ComVO;
 import com.spring.imfind.el.domain.ItemVO;
+import com.spring.imfind.el.domain.LostComVO;
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.imfind.el.domain.PayVO;
+import com.spring.imfind.el.domain.PetVO;
+import com.spring.imfind.el.domain.replyVO;
 import com.spring.imfind.el.service.ItemService;
 
 @Controller
@@ -50,9 +50,9 @@ public class ItemController {
 		String content = ItemVO.getLost_Content();
 		Matcher match = pattern.matcher(content);
 		String Lost_Up_File = null;
-		// String uploadPath = "/Users/hongmac/Documents/upload/";
+		String uploadPath = "/Users/hongmac/Documents/upload/";
 		// String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
-		String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
 
 		if (match.find()) {
 			Lost_Up_File = match.group(0);

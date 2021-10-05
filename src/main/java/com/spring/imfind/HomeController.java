@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.imfind.el.EJ.PetVO;
 import com.spring.imfind.el.MJ.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ItemVO;
+import com.spring.imfind.el.domain.PetVO;
 import com.spring.imfind.el.service.ItemService;
 import com.spring.imfind.imf.LostService;
 import com.spring.imfind.imf.PoliceVO;

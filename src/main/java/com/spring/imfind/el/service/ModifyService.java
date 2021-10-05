@@ -1,7 +1,7 @@
-package com.spring.imfind.el.MJ;
+package com.spring.imfind.el.service;
 
-import com.spring.imfind.el.EJ.MemberVO;
 import com.spring.imfind.el.YH.LoginDTO;
+import com.spring.imfind.el.domain.MemberVO;
 
 public interface ModifyService {
 	MemberVO getMember(String id);

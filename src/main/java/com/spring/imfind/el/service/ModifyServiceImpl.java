@@ -1,11 +1,12 @@
-package com.spring.imfind.el.MJ;
+package com.spring.imfind.el.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.spring.imfind.el.EJ.MemberVO;
+
 import com.spring.imfind.el.YH.LoginDTO;
-import com.spring.mapper.MJ.ModifyMapper;
+import com.spring.imfind.el.domain.MemberVO;
+import com.spring.mapper.ModifyMapper;
 
 @Service("modifyService")
 public class ModifyServiceImpl implements ModifyService {

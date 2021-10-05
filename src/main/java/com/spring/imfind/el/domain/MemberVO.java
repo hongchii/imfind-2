@@ -1,4 +1,4 @@
-package com.spring.imfind.el.EJ;
+package com.spring.imfind.el.domain;
 
 public class MemberVO {
 	private String Id; /* 회원ID */
