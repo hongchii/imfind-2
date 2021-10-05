@@ -202,7 +202,7 @@ function selectBtn() {
 function listdata() {
      
      $.ajax({
-         url : '/imfind/list.do',
+         url : '/itemList.do',
          contentType : 'application/x-www-form-urlencoded;charset=utf-8',
          success : function(data) {
         	 

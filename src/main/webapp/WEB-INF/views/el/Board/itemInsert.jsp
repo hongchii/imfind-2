@@ -305,14 +305,15 @@
          <script src="${pageContext.request.contextPath}/resources/el/EJ/datepicker/air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
          <!-- datepicker js 끝   -->
          <!-- 카카오맵 시작 -->
-         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4434d2cc6bcfc1d87507d4afab43bdfb&libraries=services"></script>
-         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4434d2cc6bcfc1d87507d4afab43bdfb"></script>
+         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c0729f6c0cb763baa34d443f09f74a2&libraries=services"></script>
+         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8c0729f6c0cb763baa34d443f09f74a2"></script>
          <!-- 카카오맵 끝 -->
          <!-- 필수입력사항 -->
          <div class="item5">
             <h6>분실 날짜(*)</h6>
             <input id="datepicker" type="text" name="Lost_Date" placeholder="날짜를 선택해주세요." required autocomplete="off">
          </div>
+        	
          <div class="item6">
             <h6>분실 위치</h6>
             <!-- 지도 불러오기  -->
@@ -397,7 +398,7 @@
    </div>
 </section>
       <!--게시글 등록 js 시작-은지 -->
-      <script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script>
+       <script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script> 
     <!--게시글 등록 js 끝-은지 -->
        <!-- 아임포트 시작-->
       <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
@@ -413,6 +414,6 @@
       <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
       <!-- Main -->
       <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
-      
+
 </body>
 </html>

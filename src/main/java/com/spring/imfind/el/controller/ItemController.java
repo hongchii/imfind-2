@@ -41,7 +41,7 @@ public class ItemController {
 	@RequestMapping("/itemboard")
 	public String itemboard() {
 
-		return "el/EJ/itemboard";
+		return "el/Board/itemInsert";
 	}
 
 	@RequestMapping("/itemInsert")
@@ -403,17 +403,17 @@ public class ItemController {
 	// MJ Item 조회
 		@RequestMapping("/item")
 		public String item() {
-			return "el/MJ/item";
+			return "el/Board/item";
 		}
 
 		@RequestMapping("/iteminfo")
 		public String iteminfo() {
-			return "el/MJ/iteminfo";
+			return "el/Board/iteminfo";
 		}
 
 		@RequestMapping("/updatepage")
 		public String updatepage() {
-			return "el/MJ/updateitem";
+			return "el/Board/updateitem";
 		}
 
 		@RequestMapping(value = "/deletepage", produces = "application/json;charset=UTF-8")
@@ -490,7 +490,7 @@ public class ItemController {
 		}
 
 		@ResponseBody
-		@RequestMapping(value = "/list.do", produces = "application/json;charset=UTF-8")
+		@RequestMapping(value = "/itemList.do", produces = "application/json;charset=UTF-8")
 		public List<ItemVO> item(ItemVO vo) {
 			List<ItemVO> list = itemService.getItemservice(vo);
 			return list;

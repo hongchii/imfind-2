@@ -3,7 +3,7 @@
 <%@ page import="com.spring.imfind.imf.PoliceVO"%>
 <%@ page import="com.spring.imfind.el.YH.LoginDTO"%>
 <%@ page import="com.spring.imfind.el.domain.ItemVO"%>
-<%@ page import="com.spring.imfind.el.EJ.PetVO"%>
+<%@ page import="com.spring.imfind.el.domain.PetVO"%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Date"%>
@@ -605,7 +605,7 @@ function getUserLocation(coords){
     //ajax 시작
    $.ajax({
       url : 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json',
-      headers : { 'Authorization' : 'KakaoAK d5e7c97eeecbba70fa5f4e5f4bc57517' },
+      headers : { 'Authorization' : 'KakaoAK 8c0729f6c0cb763baa34d443f09f74a' },
       type: 'GET',
       //async : false,
       data : { 'x' : coords.x, 'y' : coords.y },

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import = "com.spring.imfind.el.EJ.MemberVO" %>
+<%@ page import = "com.spring.imfind.el.domain.MemberVO" %>
 
 <%
    MemberVO vo = (MemberVO)request.getAttribute("membervo"); 
