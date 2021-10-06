@@ -20,8 +20,6 @@ public interface ItemMapper {
 
 	public int insertPay(PayVO payVO);
 
-	public int petInsert(PetVO petvo); // 애완동물 분실 등록
-
 	public int commentCount() throws Exception; // 댓글갯수
 
 	public List<LostComVO> commentList(int Lost_PostNum) throws Exception; // 댓글리스트
@@ -47,23 +45,6 @@ public interface ItemMapper {
 
 	public int replyUpdate(replyVO vo) throws Exception;
 
-	public List<LostComVO> pet_commentList(int Lost_PostNum) throws Exception; // 댓글리스트
-
-	public int pet_commentInsert(LostComVO comment) throws Exception; // 댓글추가
-
-	public int pet_commentUpdate(LostComVO comment) throws Exception; // 댓글수정
-
-	public int pet_commentDelete(int cno) throws Exception; // 댓글삭제
-
-	// 동준 대댓글
-	public List<replyVO> pet_replyList() throws Exception;
-
-	public int pet_replyInsert(replyVO vo) throws Exception;
-
-	public int pet_replyDelete(int re_num) throws Exception;
-
-	public int pet_replyUpdate(replyVO vo) throws Exception;
-
 	// 유희 인덱스
 	public List<ItemVO> gethighsetLostPay() throws Exception;
 
@@ -75,15 +56,13 @@ public interface ItemMapper {
 
 	public int addPayPetBoardNum(PetVO vo) throws Exception;
 
-	public PetVO getPetPostNum(PetVO boardvo) throws Exception;
-
 	// 은지 마이페이지 댓글 리스트
 	public List<ComVO> getCommentList(String id);
 
 	public List<ComVO> getPetCommentList(String id);
 
 	public int deleteMember(MemberVO membervo) throws Exception; // 회원탈퇴
-	
+
 	List<ItemVO> getitem(ItemVO vo);
 
 	List<ItemVO> getItemservice(String lost_Title);
@@ -115,41 +94,10 @@ public interface ItemMapper {
 
 	List<IndexLostPostDTO> getPetItembyDate();
 
-	// PET
-	int petdelete_data(int Pet_PostNum);
-
-	List<PetVO> getPet(PetVO vo);
-
-	List<PetVO> getPetservice(String Pet_Title);
-
-	List<PetVO> getPetSido(String Pet_Loc);
-
-	List<PetVO> getPet2(PetVO vo);
-
-	List<PetVO> getPetservice2(String Pet_Title);
-
-	List<PetVO> getPetSido2(String Pet_Loc);
-
-	List<PetVO> getpetdata_info(int Pet_PostNum);
-
-	int petupdate_data(PetVO vo);
-
-	int pet_like_plus(@Param("Pet_PostNum") int Pet_PostNum, @Param("id") String id);
-
-	int pet_like_cancel(@Param("Pet_PostNum") int Pet_PostNum, @Param("id") String id);
-
-	int pet_likeCount(int lost_PostNum);
-
 	// 사례금 랭크
 	List<ItemVO> lost_pay_rank(ItemVO vo);
 
-	// 사례금 랭크(pet)
-	List<PetVO> pet_pay_rank(PetVO vo);
-
 	// 좋아요 랭크
 	int lost_like_rank();
-
-	// 좋아요 랭크(pet)
-	int pet_like_rank();
 
 }

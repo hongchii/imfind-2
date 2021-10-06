@@ -29,6 +29,8 @@ public class HomeController {
 	LostService lostService;
 	@Autowired
 	ItemService itemService;
+	@Autowired
+	ItemService petService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView modelAndView) throws Exception {
@@ -40,24 +42,24 @@ public class HomeController {
 			List<ItemVO> list3 = itemService.lost_pay_rank(vo);
 			// pet_pay_rank
 			PetVO petvo = new PetVO();
-			List<PetVO> list4 = itemService.pet_pay_rank(petvo);
-			for (PetVO item : list4) {
-				System.out.println(item.toString());
-			}
+//			List<PetVO> list4 = petService.pet_pay_rank(petvo);
+//			for (PetVO item : list4) {
+//				System.out.println(item.toString());
+//			}
 			// lost_like_rank
 			List<ItemVO> lostRank = itemService.lost_like_rank();
 			for (ItemVO item : lostRank) {
 				System.out.println(item.toString());
 			}
 			// pet_like_rank
-			List<PetVO> petRank = itemService.pet_like_rank();
+//			List<PetVO> petRank = petService.pet_like_rank();
 
 			modelAndView.addObject("petvo", list2);
 			modelAndView.addObject("ItemVO", list);
 			modelAndView.addObject("lost_pay_rank", list3);
-			modelAndView.addObject("pet_pay_rank", list4);
+			// modelAndView.addObject("pet_pay_rank", list4);
 			modelAndView.addObject("lost_like_rank", lostRank);
-			modelAndView.addObject("pet_like_rank", petRank);
+			// modelAndView.addObject("pet_like_rank", petRank);
 		} catch (Exception e) {
 			modelAndView.setViewName("exception");
 			return modelAndView;

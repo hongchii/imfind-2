@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.PetMapper">
+
+	<!-- PET -->
+	<select id="getPet" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null ORDER BY pet_re_date desc
+	</select>
+	
+	<select id="getPetservice" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and pet_title like '%' || #{keyword} || '%' ORDER BY pet_re_date
+		desc
+	</select>
+	
+	<select id="getPetSido" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and replace(pet_loc,' ','') like #{pet_Loc} || '%' ORDER BY
+		pet_re_date desc
+	</select>
+	
+	<select id="getPet2" resultType="PetVO">
+		select * from petpost l where paycode is null ORDER BY pet_re_date desc
+	</select>
+	
+	<select id="getPetservice2" resultType="PetVO">
+		select * from petpost where paycode is null and pet_title like '%' ||
+		#{keyword} || '%' ORDER BY pet_re_date desc
+	</select>
+	
+	<select id="getPetSido2" resultType="PetVO">
+		select * from petpost where paycode is null and replace(pet_loc,' ','') like
+		#{pet_Loc} || '%' ORDER BY pet_re_date desc
+	</select>
+	
+	<delete id="petdelete_data">
+
+		{CALL
+		BEGIN
+		delete from petpost where pet_postnum = #{Pet_PostNum};
+		DELETE FROM pet_comment where lost_postnum = #{Pet_PostNum};
+		DELETE FROM pet_reply where pet_postnum = #{Pet_PostNum};
+		DELETE FROM liketo where pet_postnum = #{Pet_PostNum};
+		END
+		}
+	</delete>
+	
+	<select id="getpetdata_info" resultType="PetVO">
+		SELECT * from petpost where pet_postnum = #{Pet_PostNum}
+	</select>
+	
+	<update id="petupdate_data">
+		update petpost set
+		pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name}
+		where pet_postnum = #{Pet_PostNum}
+	</update>
+	
+	<!-- 좋아요기능(pet) -->
+	<insert id="pet_like_plus">
+		<selectKey keyProperty="likeno" order="BEFORE"
+			resultType="int">
+			select nvl(max(likeno), 0)+1 from liketo
+		</selectKey>
+		insert into liketo (likeno,pet_postnum,id)
+		values(#{likeno},#{Pet_PostNum},#{id})
+	</insert>
+
+	<delete id="pet_like_cancel">
+		delete from liketo WHERE id=#{id} AND Pet_PostNum=#{Pet_PostNum}
+	</delete>
+
+
+	<select id="pet_likeCount" resultType="int">
+		select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
+	</select>
+	
+	<select id="pet_pay_rank" resultType="PetVO">
+		SELECT *
+		FROM ( SELECT
+		l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount
+		pet_pay,l.pet_re_date pet_lostdate, l.id
+		FROM petpost l, pay p where l.paycode = p.paycode
+		ORDER BY p.pay_amount desc,l.pet_postnum desc
+		)
+		WHERE rownum=1
+
+	</select>
+	
+	<select id="pet_like_rank" resultType="int">
+		SELECT pet_postnum
+		FROM ( select pet_postnum ,count(pet_postnum)as count from liketo group by
+		pet_postnum order by count desc
+		)
+		WHERE rownum=1
+
+	</select>
+</mapper>

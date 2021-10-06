@@ -37,7 +37,7 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
-	
+
 	@RequestMapping("/itemboard")
 	public String itemboard() {
 
@@ -52,7 +52,7 @@ public class ItemController {
 		String Lost_Up_File = null;
 		String uploadPath = "/Users/hongmac/Documents/upload/";
 		// String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
-		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		// String uploadPath = "C:\\Project\\WebProject\\upload\\";
 
 		if (match.find()) {
 			Lost_Up_File = match.group(0);
@@ -105,7 +105,7 @@ public class ItemController {
 		response.setContentType("text/html;charset=utf-8");
 		String uploadPath = "/Users/hongmac/Documents/upload/";
 		// String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
-		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		// String uploadPath = "C:\\Project\\WebProject\\upload\\";
 		PrintWriter out = response.getWriter();
 		String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
 
@@ -137,66 +137,6 @@ public class ItemController {
 
 		return res;
 	}
-
-	@RequestMapping("/petboard")
-	public String petboard() {
-
-		return "el/EJ/petboard";
-
-	}
-
-	@RequestMapping("petInsert")
-	public String petInsert(PetVO petvo) throws Exception {
-		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
-		String content = petvo.getPet_Content();
-		Matcher match = pattern.matcher(content);
-		String pet_Up_File = null;
-		String uploadPath = "/Users/hongmac/Documents/upload/";
-		//String uploadPath = "C:\\Project\\WebProject\\upload\\";
-
-		if (match.find()) {
-			pet_Up_File = match.group(0);
-		}
-		// if(pattern)
-		petvo.setPet_Up_File(pet_Up_File); // 이미지 태그 Lost_Up_File에 삽입
-
-		if (petvo.getPet_Up_File() == null) {
-			String noimg = "0";
-			petvo.setPet_Up_File(noimg);
-
-		}
-		// pet_Content부분에 있는 태그들 자르기
-		petvo.setPet_Content(
-				petvo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-		String replace1 = petvo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-		String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-		// String replace3 = petvo.getPet_Pay().replaceAll(",", ""); // pay
-		String replace4 = petvo.getPet_Name().replaceAll("있음,", ""); // name
-		petvo.setPet_Content(replace2);
-		// petvo.setPet_Pay(replace3);
-		petvo.setPet_Name(replace4);
-
-		if (petvo.getPet_Pay() == null) {
-			String replace5 = "0";
-			petvo.setPet_Pay(replace5);
-		}
-
-		if (petvo.getPet_Pay() != null) {
-			String replace6 = petvo.getPet_Pay().replaceAll(",", "");
-			petvo.setPet_Pay(replace6);
-		}
-		try {
-			itemService.petInsert(petvo);
-			PetVO postNum = itemService.getPetPostNum(petvo);
-			petvo.setPet_PostNum(postNum.getPet_PostNum());
-			itemService.addPayPetBoardNum(petvo);
-		} catch (Exception e) {
-
-		}
-
-		return "redirect:/pet";
-	}
-	/* 은지 - 게시판 등록 끝 */
 
 	/* 은지 댓글 시작 */
 	@ResponseBody
@@ -294,70 +234,6 @@ public class ItemController {
 	}
 
 	/* 동준 대댓글 끝 */
-	/* 동준 대댓글 시작 */
-	@ResponseBody
-	@RequestMapping(value = "/pet_replylist", produces = "application/json;charset=UTF-8")
-	private List<replyVO> pet_replyList() throws Exception {
-		List<replyVO> reply_list = itemService.pet_replyList();
-
-		return reply_list;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_reply_insert", produces = "application/json;charset=UTF-8")
-	private int pet_replyInsert(replyVO vo, HttpSession session) throws Exception {
-		vo.setId((String) session.getAttribute("loginUser"));
-
-		return itemService.pet_replyInsert(vo);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_reply_delete", produces = "application/json;charset=UTF-8")
-	private int pet_replydelete(@RequestParam(value = "re_num") int re_num) throws Exception {
-
-		return itemService.pet_replyDelete(re_num);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_reply_update", produces = "application/json;charset=UTF-8")
-	private int pet_replyUpdate(replyVO vo) throws Exception {
-
-		return itemService.pet_replyUpdate(vo);
-	}
-
-	/* 동준 대댓글 끝 */
-	@ResponseBody
-	@RequestMapping(value = "/pet_comment_list", produces = "application/json;charset=UTF-8")
-	private List<LostComVO> pet_commentList(@RequestParam int Lost_PostNum) throws Exception {
-		List<LostComVO> comment_list = itemService.pet_commentList(Lost_PostNum);
-
-		return comment_list;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_comment_insert", produces = "application/json;charset=UTF-8")
-	private int pet_commentInsert(LostComVO comment, HttpSession session) throws Exception {
-		comment.setId((String) session.getAttribute("loginUser"));
-
-		if (comment.getSecret_Com() == null) { // 댓글 공개 설정
-			comment.setSecret_Com("n");
-		}
-
-		return itemService.pet_commentInsert(comment);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_comment_update", produces = "application/json;charset=UTF-8")
-	private int pet_commentUpdate(LostComVO comment) throws Exception {
-
-		return itemService.pet_commentUpdate(comment);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/pet_comment_delete", produces = "application/json;charset=UTF-8")
-	private int pet_commentDelete(@RequestParam(value = "Com_Num") int Com_Num) throws Exception {
-		return itemService.pet_commentDelete(Com_Num);
-	}
 
 	/* 은지 마이페이지 댓글리스트 */
 	@ResponseBody
@@ -401,269 +277,136 @@ public class ItemController {
 	}
 
 	// MJ Item 조회
-		@RequestMapping("/item")
-		public String item() {
-			return "el/Board/item";
+	@RequestMapping("/item")
+	public String item() {
+		return "el/Board/item";
+	}
+
+	@RequestMapping("/iteminfo")
+	public String iteminfo() {
+		return "el/Board/iteminfo";
+	}
+
+	@RequestMapping("/updatepage")
+	public String updatepage() {
+		return "el/Board/updateitem";
+	}
+
+	@RequestMapping(value = "/deletepage", produces = "application/json;charset=UTF-8")
+	public String deletepage(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+		itemService.delete_data(lost_PostNum);
+		return "redirect:/item";
+	}
+
+	// 좋아요 기능
+	@ResponseBody
+	@RequestMapping(value = "/likeChk", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> likeChk() {
+
+		List<ItemVO> list = itemService.likeChk();
+		return list;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/likeCount", produces = "application/json;charset=UTF-8")
+	public int likeCount(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+
+		int res = itemService.likeCount(lost_PostNum);
+
+		return res;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/likeplus", produces = "application/json;charset=UTF-8")
+	public int likeplus(@RequestParam(value = "lost_PostNum") int lost_PostNum, @RequestParam(value = "id") String id) {
+		int res = itemService.like_plus(lost_PostNum, id);
+		return res;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/likecancel", produces = "application/json;charset=UTF-8")
+	public int likecancel(@RequestParam(value = "lost_PostNum") int lost_PostNum,
+			@RequestParam(value = "id") String id) {
+		int res = itemService.like_cancel(lost_PostNum, id);
+		return res;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/itemList.do", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> item(ItemVO vo) {
+		List<ItemVO> list = itemService.getItemservice(vo);
+		return list;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/search.do", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> list(@RequestParam(value = "lost_Title") String lost_Title) {
+		List<ItemVO> list = itemService.getItemservice(lost_Title);
+		return list;
+	}
+
+	@RequestMapping(value = "/sido.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<ItemVO> sido(@RequestParam(value = "lost_Loc", required = false) String lost_Loc) {
+		List<ItemVO> list = itemService.getSido(lost_Loc);
+		return list;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/datainfo.do", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> datainfo(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+		List<ItemVO> list = itemService.getdata_info(lost_PostNum);
+		return list;
+	}
+
+	@RequestMapping("/update.do")
+	public String update_data(ItemVO vo) {
+		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
+		String content = vo.getLost_Content();
+		Matcher match = pattern.matcher(content);
+		String Lost_Up_File = null;
+		// String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		String uploadPath = "/Users/hongmac/Documents/upload/";
+
+		if (match.find()) {
+			Lost_Up_File = match.group(0);
+			vo.setLost_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
+
 		}
+		// Lost_Content부분에 있는 태그들 자르기
+		if (vo.getLost_Up_File() == null) {
+			String noimg = "0";
+			vo.setLost_Up_File(noimg);
 
-		@RequestMapping("/iteminfo")
-		public String iteminfo() {
-			return "el/Board/iteminfo";
 		}
+		// Lost_Content부분에 있는 태그들 자르기
+		vo.setLost_Content(vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
+		String replace1 = vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
+		String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
+		// String replace4 = ItemVO.getLost_Item().replaceAll("있음,", ""); // name
+		vo.setLost_Content(replace2);
 
-		@RequestMapping("/updatepage")
-		public String updatepage() {
-			return "el/Board/updateitem";
-		}
+		// ItemVO.setLost_Item(replace4);
 
-		@RequestMapping(value = "/deletepage", produces = "application/json;charset=UTF-8")
-		public String deletepage(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
-			itemService.delete_data(lost_PostNum);
-			return "redirect:/item";
-		}
+		itemService.update_data(vo);
 
-		// 좋아요 기능
-		@ResponseBody
-		@RequestMapping(value = "/likeChk", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> likeChk() {
+		return "redirect:/item";
+	}
 
-			List<ItemVO> list = itemService.likeChk();
-			return list;
-		}
+	// 사례금 랭크
+	@ResponseBody
+	@RequestMapping(value = "/lost_pay_rank.do", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> lost_pay_rank(ItemVO vo) {
+		List<ItemVO> list = itemService.lost_pay_rank(vo);
+		return list;
+	}
 
-		@ResponseBody
-		@RequestMapping(value = "/likeCount", produces = "application/json;charset=UTF-8")
-		public int likeCount(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+	// 좋아요 랭크
+	@ResponseBody
+	@RequestMapping(value = "/lost_like_rank.do", produces = "application/json;charset=UTF-8")
+	public List<ItemVO> lost_like_rank() {
+		List<ItemVO> list = itemService.lost_like_rank();
+		return list;
+	}
 
-			int res = itemService.likeCount(lost_PostNum);
-
-			return res;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/likeplus", produces = "application/json;charset=UTF-8")
-		public int likeplus(@RequestParam(value = "lost_PostNum") int lost_PostNum, @RequestParam(value = "id") String id) {
-			int res = itemService.like_plus(lost_PostNum, id);
-			return res;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/likecancel", produces = "application/json;charset=UTF-8")
-		public int likecancel(@RequestParam(value = "lost_PostNum") int lost_PostNum,
-				@RequestParam(value = "id") String id) {
-			int res = itemService.like_cancel(lost_PostNum, id);
-			return res;
-		}
-
-		// 좋아요 기능 (pet)
-		@ResponseBody
-		@RequestMapping(value = "/pet_likeChk", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> pet_likeChk() {
-
-			List<ItemVO> list = itemService.likeChk();
-			return list;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/pet_likeCount", produces = "application/json;charset=UTF-8")
-		public int pet_likeCount(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
-
-			int res = itemService.pet_likeCount(Pet_PostNum);
-
-			return res;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/pet_likeplus", produces = "application/json;charset=UTF-8")
-		public int pet_likeplus(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,
-				@RequestParam(value = "id") String id) {
-			int res = itemService.pet_like_plus(Pet_PostNum, id);
-			return res;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/pet_likecancel", produces = "application/json;charset=UTF-8")
-		public int pet_likecancel(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,
-				@RequestParam(value = "id") String id) {
-			int res = itemService.pet_like_cancel(Pet_PostNum, id);
-			return res;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/itemList.do", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> item(ItemVO vo) {
-			List<ItemVO> list = itemService.getItemservice(vo);
-			return list;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/search.do", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> list(@RequestParam(value = "lost_Title") String lost_Title) {
-			List<ItemVO> list = itemService.getItemservice(lost_Title);
-			return list;
-		}
-
-		@RequestMapping(value = "/sido.do", produces = "application/json; charset=utf-8")
-		@ResponseBody
-		public List<ItemVO> sido(@RequestParam(value = "lost_Loc", required = false) String lost_Loc) {
-			List<ItemVO> list = itemService.getSido(lost_Loc);
-			return list;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/datainfo.do", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> datainfo(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
-			List<ItemVO> list = itemService.getdata_info(lost_PostNum);
-			return list;
-		}
-
-		@RequestMapping("/update.do")
-		public String update_data(ItemVO vo) {
-			Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
-			String content = vo.getLost_Content();
-			Matcher match = pattern.matcher(content);
-			String Lost_Up_File = null;
-			//String uploadPath = "C:\\Project\\WebProject\\upload\\";
-			String uploadPath = "/Users/hongmac/Documents/upload/";
-
-			if (match.find()) {
-				Lost_Up_File = match.group(0);
-				vo.setLost_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
-
-			}
-			// Lost_Content부분에 있는 태그들 자르기
-			if (vo.getLost_Up_File() == null) {
-				String noimg = "0";
-				vo.setLost_Up_File(noimg);
-
-			}
-			// Lost_Content부분에 있는 태그들 자르기
-			vo.setLost_Content(vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-			String replace1 = vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-			String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-			// String replace4 = ItemVO.getLost_Item().replaceAll("있음,", ""); // name
-			vo.setLost_Content(replace2);
-
-			// ItemVO.setLost_Item(replace4);
-
-			itemService.update_data(vo);
-
-			return "redirect:/item";
-		}
-
-		// Pet
-		@RequestMapping("/pet")
-		public String pet() {
-			return "el/MJ/pet";
-		}
-
-		@RequestMapping("/petinfo")
-		public String petinfo() {
-			return "el/MJ/petinfo";
-		}
-
-		@RequestMapping("/petupdatepage")
-		public String petupdatepage() {
-			return "el/MJ/updatepet";
-		}
-
-		@RequestMapping("/petupdate.do")
-		public String petupdate_data(PetVO vo) {
-			Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
-			String content = vo.getPet_Content();
-			Matcher match = pattern.matcher(content);
-			String Lost_Up_File = null;
-			// String uploadPath = "C:\\Project\\WebProject\\upload\\";
-			String uploadPath = "/Users/hongmac/Documents/upload/";
-
-			if (match.find()) {
-				Lost_Up_File = match.group(0);
-				vo.setPet_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
-
-			}
-			// Lost_Content부분에 있는 태그들 자르기
-			if (vo.getPet_Up_File() == null) {
-				String noimg = "0";
-				vo.setPet_Up_File(noimg);
-
-			}
-			// Lost_Content부분에 있는 태그들 자르기
-			vo.setPet_Content(vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-			String replace1 = vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-			String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-			// String replace4 = ItemVO.getLost_Item().replaceAll("있음,", ""); // name
-			vo.setPet_Content(replace2);
-
-			// ItemVO.setLost_Item(replace4);
-
-			itemService.petupdate_data(vo);
-
-			return "redirect:/pet";
-		}
-
-		@RequestMapping(value = "/petdeletepage", produces = "application/json;charset=UTF-8")
-		public String petdeletepage(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
-			itemService.petdelete_data(Pet_PostNum);
-			return "redirect:/pet";
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/petlist.do", produces = "application/json;charset=UTF-8")
-		public List<PetVO> pet(PetVO vo) {
-			List<PetVO> list = itemService.getPetservice(vo);
-			return list;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/petsearch.do", produces = "application/json;charset=UTF-8")
-		public List<PetVO> petlist(@RequestParam(value = "Pet_Title") String Pet_Title) {
-			List<PetVO> list = itemService.getPetservice(Pet_Title);
-			return list;
-		}
-
-		@RequestMapping(value = "/petsido.do", produces = "application/json; charset=utf-8")
-		@ResponseBody
-		public List<PetVO> petsido(@RequestParam(value = "Pet_Loc", required = false) String Pet_Loc) {
-			List<PetVO> list = itemService.getPetSido(Pet_Loc);
-			return list;
-		}
-
-		@ResponseBody
-		@RequestMapping(value = "/petdatainfo.do", produces = "application/json;charset=UTF-8")
-		public List<PetVO> petdatainfo(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
-			List<PetVO> list = itemService.getpetdata_info(Pet_PostNum);
-			return list;
-		}
-
-		// 사례금 랭크
-		@ResponseBody
-		@RequestMapping(value = "/lost_pay_rank.do", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> lost_pay_rank(ItemVO vo) {
-			List<ItemVO> list = itemService.lost_pay_rank(vo);
-			return list;
-		}
-
-		// 사례금 랭크(pet)
-		@ResponseBody
-		@RequestMapping(value = "/pet_pay_rank.do", produces = "application/json;charset=UTF-8")
-		public List<PetVO> pet_pay_rank(PetVO vo) {
-			List<PetVO> list = itemService.pet_pay_rank(vo);
-			return list;
-		}
-
-		// 좋아요 랭크
-		@ResponseBody
-		@RequestMapping(value = "/lost_like_rank.do", produces = "application/json;charset=UTF-8")
-		public List<ItemVO> lost_like_rank() {
-			List<ItemVO> list = itemService.lost_like_rank();
-			return list;
-		}
-
-		// 좋아요 랭크(pet)
-		@ResponseBody
-		@RequestMapping(value = "/pet_like_rank.do", produces = "application/json;charset=UTF-8")
-		public List<PetVO> pet_like_rank() {
-			List<PetVO> list = itemService.pet_like_rank();
-			return list;
-		}
 }

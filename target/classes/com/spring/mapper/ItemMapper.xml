@@ -129,61 +129,7 @@
 		update reply set re_Content = #{re_content} WHERE re_Num = #{re_num}
 	</update>
 	<!-- 동준 대댓글 끝 -->
-	<insert id="pet_commentInsert" parameterType="LostComVO">
-		<selectKey keyProperty="Com_Num" order="BEFORE"
-			resultType="int">
-			select nvl(max(Com_Num), 0)+1 from pet_Comment
-		</selectKey>
-		insert into pet_Comment (Com_Num, Lost_PostNum, Com_Content, Id,
-		Com_Date, Secret_Com)
-		values(#{Com_Num},#{Lost_PostNum},#{Com_Content},#{Id},sysdate,#{Secret_Com})
-	</insert>
-
-	<select id="pet_commentList" parameterType="int"
-		resultType="LostComVO">
-		select * from pet_Comment where Lost_PostNum = #{Lost_PostNum} order by
-		Com_Num desc
-	</select>
-
-	<select id="pet_commentCount" resultType="int">
-		select count(*) from pet_Comment
-	</select>
-
-	<update id="pet_commentUpdate" parameterType="LostComVO">
-		update pet_Comment set Com_Content = #{Com_Content} WHERE Com_Num =
-		#{Com_Num}
-	</update>
-
-	<delete id="pet_commentDelete" parameterType="int">
-		{CALL
-		BEGIN
-		DELETE FROM pet_comment WHERE com_num = #{com_num};
-		DELETE FROM pet_reply WHERE com_num = #{com_num};
-		END
-		}
-	</delete>
-
-	<!-- 동준 대댓글 -->
-	<insert id="pet_replyInsert" parameterType="replyVO">
-		<selectKey keyProperty="re_num" order="BEFORE"
-			resultType="int">
-			select nvl(max(re_Num), 0)+1 from pet_reply
-		</selectKey>
-		insert into pet_reply
-		(re_num,re_content,re_date,id,com_num,Pet_PostNum)
-		values(#{re_num},#{re_content},sysdate,#{id},#{com_num},#{pet_postnum})
-	</insert>
-
-	<select id="pet_replyList" resultType="replyVO">
-		select * from pet_reply order by re_num
-	</select>
-	<delete id="pet_replyDelete">
-		delete from pet_reply where re_num = #{re_num}
-	</delete>
-	<update id="pet_replyUpdate">
-		update pet_reply set re_content = #{re_content} WHERE re_Num = #{re_num}
-	</update>
-	<!-- 동준 대댓글 끝 -->
+	
 	<!-- 인덱스페이지 사례금 상위 5개 -->
 	<select id="gethighsetLostPay" resultType="ItemVO">
 		select * from ( select * from lostpost order by lost_pay desc) where <![CDATA[ rownum <= 5 ]]>
@@ -261,24 +207,7 @@
 	<select id="likeCount" resultType="int">
 		select count(*) from liketo where lost_postnum=#{lost_postnum}
 	</select>
-	<!-- 좋아요기능(pet) -->
-	<insert id="pet_like_plus">
-		<selectKey keyProperty="likeno" order="BEFORE"
-			resultType="int">
-			select nvl(max(likeno), 0)+1 from liketo
-		</selectKey>
-		insert into liketo (likeno,pet_postnum,id)
-		values(#{likeno},#{Pet_PostNum},#{id})
-	</insert>
-
-	<delete id="pet_like_cancel">
-		delete from liketo WHERE id=#{id} AND Pet_PostNum=#{Pet_PostNum}
-	</delete>
-
-
-	<select id="pet_likeCount" resultType="int">
-		select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
-	</select>
+	
 
 	<select id="getitem" resultType="ItemVO">
 
@@ -378,51 +307,6 @@
 		ORDER BY PET_LOSTDATE
 	</select>
 
-	<!-- PET -->
-	<select id="getPet" resultType="PetVO">
-		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
-		null ORDER BY pet_re_date desc
-	</select>
-	<select id="getPetservice" resultType="PetVO">
-		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
-		null and pet_title like '%' || #{keyword} || '%' ORDER BY pet_re_date
-		desc
-	</select>
-	<select id="getPetSido" resultType="PetVO">
-		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
-		null and replace(pet_loc,' ','') like #{pet_Loc} || '%' ORDER BY
-		pet_re_date desc
-	</select>
-	<select id="getPet2" resultType="PetVO">
-		select * from petpost l where paycode is null ORDER BY pet_re_date desc
-	</select>
-	<select id="getPetservice2" resultType="PetVO">
-		select * from petpost where paycode is null and pet_title like '%' ||
-		#{keyword} || '%' ORDER BY pet_re_date desc
-	</select>
-	<select id="getPetSido2" resultType="PetVO">
-		select * from petpost where paycode is null and replace(pet_loc,' ','') like
-		#{pet_Loc} || '%' ORDER BY pet_re_date desc
-	</select>
-	<delete id="petdelete_data">
-
-		{CALL
-		BEGIN
-		delete from petpost where pet_postnum = #{Pet_PostNum};
-		DELETE FROM pet_comment where lost_postnum = #{Pet_PostNum};
-		DELETE FROM pet_reply where pet_postnum = #{Pet_PostNum};
-		DELETE FROM liketo where pet_postnum = #{Pet_PostNum};
-		END
-		}
-	</delete>
-	<select id="getpetdata_info" resultType="PetVO">
-		SELECT * from petpost where pet_postnum = #{Pet_PostNum}
-	</select>
-	<update id="petupdate_data">
-		update petpost set
-		pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name}
-		where pet_postnum = #{Pet_PostNum}
-	</update>
 	<select id="lost_pay_rank" resultType="ItemVO">
 		SELECT *
 		FROM ( SELECT
@@ -434,17 +318,7 @@
 		WHERE rownum=1
 
 	</select>
-	<select id="pet_pay_rank" resultType="PetVO">
-		SELECT *
-		FROM ( SELECT
-		l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount
-		pet_pay,l.pet_re_date pet_lostdate, l.id
-		FROM petpost l, pay p where l.paycode = p.paycode
-		ORDER BY p.pay_amount desc,l.pet_postnum desc
-		)
-		WHERE rownum=1
-
-	</select>
+	
 	<select id="lost_like_rank" resultType="int">
 		SELECT lost_postnum
 		FROM ( select lost_postnum ,count(lost_postnum)as count from liketo group
@@ -453,13 +327,6 @@
 		WHERE rownum=1
 
 	</select>
-	<select id="pet_like_rank" resultType="int">
-		SELECT pet_postnum
-		FROM ( select pet_postnum ,count(pet_postnum)as count from liketo group by
-		pet_postnum order by count desc
-		)
-		WHERE rownum=1
-
-	</select>
+	
 
 </mapper>
