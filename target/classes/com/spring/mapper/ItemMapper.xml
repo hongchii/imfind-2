@@ -51,29 +51,7 @@
 		PayCode=#{PayCode}
 	</update>
 
-	<insert id="petInsert">
-		insert into PetPost
-		(Pet_Title,
-		Pet_Content,
-		pet_Name,
-		pet_Re_Date,
-		pet_LostDate,
-		pet_Up_File,
-		pet_Loc,
-		pet_Pay,
-		Id,
-		PayCode)values
-		(#{pet_Title},
-		#{pet_Content},
-		#{pet_Name},
-		sysdate,
-		#{pet_LostDate},
-		#{pet_Up_File},
-		#{pet_Loc},
-		#{pet_Pay},
-		#{Id},
-		#{PayCode})
-	</insert>
+	
 	<!-- 여기서 동적쿼리문으로 조건문 처리 -->
 	<insert id="commentInsert" parameterType="LostComVO">
 		<selectKey keyProperty="Com_Num" order="BEFORE"
