@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
 
-<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include> 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script>
@@ -65,77 +65,42 @@ function delBno(noticeBno) {
 	
 </head>
 <body>
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
-
-
-	<div class="wrap">
-
-		<div class="content_wrap">
-
-
-			<div class="contents">
-				<h1 class="title" style="margin-left: 250px; margin-top: 100px;">공지사항</h1>
-
-				<div class="table_list_wrap"
-					style="margin-left: 350px; margin-top: 80px;">
-					<table>
-						<caption>게시판 목록</caption>
-						<colgroup>
-							<col style="width: 10%;" />
-							<col style="width: 10%;" />
-							<col style="width: 15%;" />
-							<col style="width: 10%;" />
-							<col style="width: 10%;" />
-			
-						</colgroup>
-						<thead>
-							<tr>
-								<th></th>
-								<th>제목</th>
-								<th>작성자</th>
-								<!-- <th>내용</th> -->
-								<th>작성일</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody class="text-center">
-							<c:forEach items="${notice }" var="notice">
-								<tr>
-									<td><input type="checkbox" id="${notice.noticeBno }"
-										name="notice_del_yn" value=""></td>
-									<%-- <td><c:out value="${notice.noticeBno }" /></td> --%>
-									<td class="left"><a
-										href="/noticeInfo?noticeBno=${notice.noticeBno }"> <c:out
-												value="${notice.noticeTitle }" />
-									</a></td>
-									<td><c:out value="${notice.id }" /></td>
-								<%-- 	<td class="left"><a
-										href="/noticeInfo?noticeBno==${notice.noticeBno }"> <c:out
-												value="${notice.noticeContent }" />
-									</a></td> --%>
-
-									<td><c:out value="${notice.noticeDate }" /></td>
-									<td><c:out value="${notice.readcount }" /></td>
-									<td></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-
-				<tr><td colspan="2">&nbsp;</td></tr>
-				<tr align="center" valign="middle">
-					<td colspan="5">
-						<font size=2>
-					<!-- <a href="#none" class="btn del">삭제</a>  -->
-					<<!-- a href="./insert">[등록]</a>&nbsp;&nbsp;
-					<a href="#">[삭제]</a>&nbsp;&nbsp; -->
-					<a href="./insert" class="btn write" style="margin-right: 5px;">등록</a>
-					<input type="button" class="btn del" id="deleteBtn" value="삭제" onclick="check();" style="width: 82px;">
-				</font>
-			</td>
-		</tr>
-
+		 <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> 
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default" style="margin-top: 100px; width: 1030px;margin-left: 250px;">
+			<div class="panel-heading">
+				공지사항
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body" style="margin-top: 30px; width: 1030px;">
+				<table width="50%"
+					class="table table-striped table-bordered table-hover"
+					id="dataTables-example">
+					<thead>
+						<tr>
+							<th>#번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<c:forEach items="${notice }" var="notice">
+						<tr>
+							<td><input type="checkbox" id="${notice.noticeBno }"
+										name="notice_del_yn" value="">             ${notice.noticeBno }</td>
+							<td><a href="/noticeInfo?noticeBno=${notice.noticeBno }">
+									<c:out value="${notice.noticeTitle }" />
+							</a></td>
+							<td><c:out value="${notice.id }" /></td>
+							<td><c:out value="${notice.noticeDate }" /></td>
+							<td><c:out value="${notice.readcount }" /></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<!-- /.table-responsive -->
+				
 				<div class="paging" style="margin-left: 500px;">
 					<ul class="btn-group pagination" style = "display : flex;">
 					    <c:if test="${pageMaker.prev }">
@@ -157,11 +122,37 @@ function delBno(noticeBno) {
 
 				</div>
 				
-
+							
+				<!-- Modal 추가 -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aira-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							</div>
+							<div class="modal-body">처리가 완료되었습니다.</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss='modal'>Close</button>
+								<button type="button" class="btn btn-primary">Save
+									changes</button>
+							</div>
+						</div>
+						<!-- modal-content -->
+					</div>
+					<!-- modal-dialog -->
+				</div>
+				<!-- /.modal -->
 			</div>
+			<!-- /.panel-body -->
 		</div>
+		<!-- /.panel -->
 	</div>
-
+	<!-- /.col-lg-12 -->
+</div>
 
 
 	<div class="gototop js-top">

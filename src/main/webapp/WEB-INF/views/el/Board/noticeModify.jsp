@@ -13,53 +13,66 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	 <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> 
 
 
 
-	<!-- 게시판 수정 -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default" style="margin-top: 100px; width: 1030px;margin-left: 250px;">
 
-	<div class="table_list_wrap"
-		style="margin-left: 350px; margin-top: 80px;">
-		<form action="./modifyNotice" method="post" name="boardform"
-			enctype="multipart/form-data">
-			<table cellpadding="0" cellspacing="0">
-				<tr align="center" valign="middle">
-					<td colspan="5">공지사항</td>
-				</tr>
-				<tr>
-					<td><input type="hidden" name="noticeBno" value="${info.noticeBno }"> </td>
-				</tr>
-				<tr>
-					<td style="font-family: 돋음; font-size: 12" height="16">
-						<div align="center">작성자</div>
-					</td>
-					<td><input name="id" type="text" size="50" maxlength="100" value="${info.id }"></td>
-				</tr>
-				<tr>
-					<td style="font-family: 돋음; font-size: 12" height="16">
-						<div align="center">제 목</div>
-					</td>
-					<td><input name="noticeTitle" type="text" size="50"
-						maxlength="100" value="${info.noticeTitle }"/></td>
-				</tr>
-				<tr>
-					<td style="font-family: 돋음; font-size: 12">
-						<div align="center">내 용</div>
-					</td>
-					<td><textarea name="noticeContent" cols="67" rows="15">${info.noticeContent }</textarea></td>
-				</tr>
-				<tr bgcolor="cccccc">
-					<td colspan="2" style="height: 1px;"></td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;</td>
-				</tr>
-				<tr align="center" valign="middle">
-					<button type="submit" style="width: 82px;" class="btn write">수정완료</button>
-				</tr>
-			</table>
-		</form>
+				<div class="panel-heading">공지사항 수정</div>
+				<!-- /.pannel-heading -->
+				<div class="panel-body">
+					<form role="form" action="./modifyNotice" method="post">
+						<div class="form-group">
+							<label>글번호</label> <input class="form-control" name="noticeBno"
+								value="<c:out value="${info.noticeBno }"/>" readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label>작성자</label> <input class="form-control" name="noticeId"
+								value="<c:out value="${info.id }"/>" readonly="readonly">
+						</div>
+
+						<div class="form-group">
+							<label>제목</label><input class="form-control" name="noticeTitle"
+								value="<c:out value="${info.noticeTitle }"/>">
+						</div>
+
+						<div class="form-group">
+							<label>내용</label>
+							<textarea class="form-control" rows="3" name="noticeContent">
+					<c:out value="${info.noticeContent }" />
+					</textarea>
+						</div>
+
+
+
+						<%-- <div class="form-group">
+		<label>RegDate</label> <input class="form-control" name="regDate"
+			value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regdate }"/>"
+			readonly="readonly">
 	</div>
+	
+	<div class="form-group">
+		<label>Update</label> <input class="form-control" name="updateDate"
+			value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate }"/>"
+			readonly="readonly">
+	</div>
+	 --%>
+						<button type="submit" data-oper="modify" class="btn btn-default">수정완료</button>
+					<!-- 	<button type="submit" data-oper="remove" class="btn btn-danger">Remove</button>
+						<button type="submit" data-oper="list" class="btn btn-info">List</button> -->
+					</form>
+				</div>
+				<!-- 	end panel-body -->
+			</div>
+			<!-- 	end pane-body -->
+		</div>
+		<!-- 	end panel -->
+	</div>
+	<!-- /.row  -->
+
 </body>
 </html>

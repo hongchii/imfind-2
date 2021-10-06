@@ -13,92 +13,57 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-	
-	<div class="wrap">
-		<div class="content_wrap">
-			<div class="contents">
-				<div class="table_detail_wrap"
-					style="width: 1000px; margin-left: 200px;">
-					<h1 class="title" style="margin-left: 250px; margin-top: 100px;">공지사항</h1>
-					<table>
-						<colgroup>
-							<col style="width: 5%;" />
-							<col style="width: 10%;" />
-							<col style="width: 15%;" />
-							<col style="width: 10%;" />
-							<col style="width: 35%;" />
-							<col style="width: 10%;" />
-							<col style="width: 10%;" />
-						</colgroup>
+	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default" style="margin-top: 100px; width: 1030px;margin-left: 250px;">
 
-						<tbody>
-						<tr>
-				<td style="font-family:돋음; font-size:12" height="16">
-					<div align="center">제 목&nbsp;&nbsp;</div>
-				</td>
-				
-				<td style="font-family:돋음; font-size:12">
-				${info.noticeTitle }
-				</td>
-			</tr>
-			
-			<tr bgcolor="cccccc">
-				<td colspan="2" style="height:1px;">
-				</td>
-			</tr>
-			
-			<tr>
-				<td style="font-family:돋음; font-size:12">
-					<div align="center">내 용</div>
-				</td>
-				<td style="font-family:돋음; font-size:12">
-					<table border=0 width=490 height=250 style="table-layout:fixed">
-						<tr>
-							<td valign=top style="font-family:돋음; font-size:12">
-							${info.noticeContent }
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	
-							<%-- <tr>
-								<th>작성자</th>
-								<td colspan="3">${info.id }</td>
-							</tr>
-							<tr>
-								<th>작성일</th>
-								<td colspan="3">${info.noticeDate }</td>
-							</tr>
-							<tr>
-								<th>제목</th>
-								<td colspan="3">${info.noticeTitle }</td>
-							</tr>
-							<tr>
-								<th>내용</th>
-								<td colspan="3"><textarea value="" disabled>${info.noticeContent }</textarea>
-								</td>
-							</tr> --%>
-						</tbody>
-					</table>
-				</div>
-					<tr align="center" valign="middle">
-						<td colspan="5">
-							<font size=2>
-							<a href="./getModifyNotice?noticeBno=${info.noticeBno }">[수정]</a>&nbsp;&nbsp;
-							<a href="./deleteNotice?noticeBno=${info.noticeBno }">[삭제]</a>&nbsp;&nbsp;
-							<a href="./notice">[목록]</a>&nbsp;&nbsp;
-							</font>
-						</td>
-					</tr>
-				<%-- <div class="btn_wrap right" style="margin-right: 100px;">
-					<a href="./getModifyNotice?noticeBno=${info.noticeBno }" class="btn write" style="margin-right: 5px;">수정</a>
-					<a href="./notice" class="btn write" style="margin-right: 5px;">목록</a>
+			<div class="panel-heading">공지사항</div>
+			<!-- /.pannel-heading -->
+			<div class="panel-body" style="margin-top: 30px; width: 1030px;">
+
+				<div class="form-group">
+					<label>글번호</label> <input class="form-control" name="noticeBno"
+						value="<c:out value="${info.noticeBno }"/>" readonly="readonly">
 					
-				</div> --%>
+					<label>조회수</label> <input class="form-control" name="readCount"
+						value="<c:out value="${info.readcount }"/>" readonly="readonly">	
+				</div>
+				
+				<div class="form-group">
+					<label>작성자</label> <input class="form-control" name="noticeId"
+						value="<c:out value="${info.id }"/>" readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>제목</label><input class="form-control" name="noticeTitle"
+						value="<c:out value="${info.noticeTitle }"/>" readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>내용</label>
+					<textarea class="form-control" rows="3" name="noticeContent"
+						readonly="readonly">
+					<c:out value="${info.noticeContent }" />
+					</textarea>
+				</div>
+
+				
+
+				<button data-oper="modify" class="btn btn-default"
+					onclick="location.href='./getModifyNotice?noticeBno=<c:out value="${info.noticeBno }"/>'">수정</button>
+				<button data-oper="list" class="btn btn-info"
+					onclick="location.herf='./notice'">목록</button>
+				<button data-oper="delete" class="btn btn-default"
+					onclick="location.href='./deleteNotice?noticeBno=<c:out value="${info.noticeBno }"/>'">삭제</button>	
+
 			</div>
+			<!-- end panel-body -->
 		</div>
+		<!-- end pane-body -->
 	</div>
+	<!-- end panel -->
+</div>
 
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
