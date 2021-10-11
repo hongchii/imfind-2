@@ -67,7 +67,12 @@ public class NoticeController {
 		
 		System.out.println("notice insert controller ::: " + vo);
 		vo.setDelYN("1");
-		noticeService.noticeInsert(vo);
+		
+		if (vo.getAttachList() != null) {
+			vo.getAttachList().forEach(attach -> System.out.println(attach));
+		}
+		
+	//	noticeService.noticeInsert(vo);
 		System.out.println("----------->>>>> notice insert controller--------------");
 		
 		return "redirect:/notice";

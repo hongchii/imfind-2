@@ -65,6 +65,11 @@
 					<div class="form-group uploadDiv">
 						<input type="file" name="uploadFile" multiple>
 					</div>
+					
+					<div class="uploadResult">
+						<ul>
+						</ul>
+					</div>
 					<button id="uploadBtn">Upload</button>
 				</div>
 			</div>
@@ -80,6 +85,16 @@
 			$("button[type='submit']").on("click",function(e){
 				e.preventDefault();
 				console.log("submit clicked");
+				
+				var str ="";
+				
+				$(".uploadResult ul li").each(function(i, obj){
+					str += "<input type='hidden' name="attachList["+i+"].fileName'value='"+jobj.data("filename")+"'>";
+					str += "<input type='hidden' name="attachList["+i+"].uuid'value='"+jobj.data("uuid")+"'>";
+					str += "<input type='hidden' name="attachList["+i+"].uploadPath'value='"+jobj.data("path")+"'>";
+					str += "<input type='hidden' name="attachList["+i+"].fileType'value='"+jobj.data("type")+"'>";
+				});
+				formObj.append(str).submit();
 			});
 		});
 		
@@ -96,18 +111,18 @@
 				return false;
 			}
 			return true;
-		}
-		
-		$("input[type='file']").change(function(e){
+		});
+		var cloneObj = $(".uploadDiv").clone();
+		//$("input[type='file']").change(function(e){
 		//$(document).ready(function(){
-		//$('#uploadBtn').on("click", function(e){
+		$('#uploadBtn').on("click", function(e){
 			var formData = new FormData();
 			
 			var inputFile = $("input[name='uploadFile']");
 			
 			var files = inputFile[0].files;
 			
-			//console.log("files " +files);
+			console.log("files " +files);
 			 for(var i = 0; i < files.length; i++){
 				if(!checkExtension(files[i].name, files[i].size)){
 				return false;
@@ -124,11 +139,15 @@
 					//dataType: 'json',
 					success: function(result){
 						console.log(result)
+						
+						$(".uploadDiv").html(cloneObj.html());
 						showUploadResult(result);
 					}
 				});  // ajax end
 		
 		});
+		
+		var uploadResult = $(".uploadResult ul");
 		
 		function showUploadResult(uploadResultArr){
 			if(!uploadResultArr || uploadResultArr.length == 0){
@@ -140,6 +159,8 @@
 			var str = "";
 			
 			$(uploadResultArr).each(function(i, obj){
+				/*
+			
 				if(obj.image){
 					var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName);
 					str += "<li><div>";
@@ -158,10 +179,36 @@
 					str += "</div>";
 					str +"</li>";
 				}
+				*/
+				if(obj.image){
+					var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName);
+					str += "<li data-path='"+obj.uuid+"'";
+					str += " data-uuid='" +obj.uuid+"'data-filename='"+obj.fileName+"'data-type='"+obj.image+"'"
+					str += "><div>";
+					str += "<span> " + obj.fileName +"</span>";
+					str += "<button type='button' data-file=\'"+fileCallPath+"\'"
+					str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str +"</li>";
+				} else {
+					var fileCallPath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid + "_" + obj.fileName);
+					var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+					str += "<li "
+					str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+					str += "<span> " + obj.fileName+"</span>";
+					str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='file'"
+					str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<img src='/resources/img/attach.png'></a>";
+					str += "</div>";
+					str +"</li>";
+				}
 			});
 			
 			uploadUL.append(str);
 		}
+		
+		
 		
 		$(".uploadResult").on("click", "button", function(e){
 			console.log("delete file");	

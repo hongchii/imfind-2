@@ -10,7 +10,7 @@ public interface NoticeService {
 	
 	public List<Map<String, Object>> getNoticeList(Criteria cri) throws Exception;
 	
-	public int noticeInsert(NoticeVO vo) throws Exception;
+	public void noticeInsert(NoticeVO vo) throws Exception;
 	
 	public NoticeVO getNoticeInfo(int noticeBno) throws Exception;
 	

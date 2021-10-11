@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
+import com.spring.mapper.NoticeAttachMapper;
 import com.spring.mapper.NoticeMapper;
 
 @Service("noticeService")
@@ -29,16 +30,28 @@ public class NoticeServiceImpl implements NoticeService {
 
 		return noticeList;
 	}
-
+	
+	@Transactional
 	@Override
-	public int noticeInsert(NoticeVO vo) throws Exception {
+	public void noticeInsert(NoticeVO vo) throws Exception {
 		
 		System.out.println("---------->>>>> notice insert serviceImpl----------------");
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		NoticeAttachMapper attachMapper = sqlSession.getMapper(NoticeAttachMapper.class);
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		vo.getAttachList().forEach(attach -> {
+			attach.setBno(vo.getNoticeBno());
+			attachMapper.insert(attach);
+			System.out.println("Dddd");
+		});
+		
 		int res = noticeMapper.noticeInsert(vo);
 		
-		return res;
+		return;
 	}
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED)

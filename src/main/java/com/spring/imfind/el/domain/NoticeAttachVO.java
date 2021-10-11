@@ -5,7 +5,7 @@ public class NoticeAttachVO {
 	private String uploadPath;
 	private String fileName;
 	private boolean fileType;
-	private Long bno;
+	private int bno;
 
 	public String getUuid() {
 		return uuid;
@@ -39,11 +39,11 @@ public class NoticeAttachVO {
 		this.fileType = fileType;
 	}
 
-	public Long getBno() {
+	public int getBno() {
 		return bno;
 	}
 
-	public void setBno(Long bno) {
+	public void setBno(int bno) {
 		this.bno = bno;
 	}
 
