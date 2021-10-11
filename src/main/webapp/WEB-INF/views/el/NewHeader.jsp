@@ -65,7 +65,7 @@
 								<li><a href="./free">자유게시판</a></li>
 							</ul>
 						</li>
-						<%-- <c:set var="user" value='${loginUser}'/>
+						 <c:set var="user" value='${loginUser}'/>
 							<c:choose>
 								    <c:when test="${user eq null}">
 										<li class="btn-cta"><a href="./login"><span>Login</span></a></li> 
@@ -79,7 +79,7 @@
 										<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
 										<li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li> 		
 								    </c:otherwise>
-							</c:choose> --%>
+							</c:choose> 
 					</ul>
 				</div>
 			</div>

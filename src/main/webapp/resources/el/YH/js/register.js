@@ -133,6 +133,7 @@
 				}
 			},
 			success : function(data){
+				console.log("data" + data);
 				if(data == 'ok'){
 					e.target.style = "border: 1px solid #A5FA52;";
 					e.target.nextElementSibling.innerText = '사용가능한 아이디 입니다.'

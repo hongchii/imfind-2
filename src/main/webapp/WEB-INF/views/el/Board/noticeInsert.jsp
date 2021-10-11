@@ -10,56 +10,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<script>
-		$(document).ready(function(e){
-			var formObj = $("form[role='form']");
-			
-			$("button[type='submit']").on("click",function(e){
-				e.preventDefault();
-				console.log("submit clicked");
-			});
-		});
-		
-		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-		var maxSize = 5242880;
-		
-		function checkExtendion(fileName, fileSize){
-			if(fileSize >= maxSize){
-				alert("파일 사이즈 초과");
-				return false;
-			}
-			if(regex.test(fileName)){
-				alert("해당 종류의 파일은 업로드할 수 없습니다.");
-				return false;
-			}
-			return ture;
-		}
-		
-		$("input[type='file']").charge(function(e){
-			var formData = new FormData();
-			
-			var inputFile = $("input[name='uploadFile']");
-			
-			var files = inputFile[0].files;
-			
-			for(var i = 0; i < files.length; i++){
-				if(!checkExtension(files[i].name, files[i].size)){}
-				return false;
-			}
-			formData.append("uploadFile", files[i]);
-		}
-		
-		$.ajax({
-			url: '/uploadAjaxAction',
-			processData: false,
-			contentType: false, data:
-			formData:'json',
-			success: function(result){
-				console.log(result);
-			}
-		}); 
-		});
-	</script>
+
 </head>
 <body>
 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
@@ -114,11 +65,110 @@
 					<div class="form-group uploadDiv">
 						<input type="file" name="uploadFile" multiple>
 					</div>
-
-
+					<button id="uploadBtn">Upload</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+	<script>
+		
+		$(document).ready(function(e){
+			var formObj = $("form[role='form']");
+			
+			$("button[type='submit']").on("click",function(e){
+				e.preventDefault();
+				console.log("submit clicked");
+			});
+		});
+		
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 5242880;
+		
+		function checkExtension(fileName, fileSize){
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			if(regex.test(fileName)){
+				alert("해당 종류의 파일은 업로드할 수 없습니다.");
+				return false;
+			}
+			return true;
+		}
+		
+		$("input[type='file']").change(function(e){
+		//$(document).ready(function(){
+		//$('#uploadBtn').on("click", function(e){
+			var formData = new FormData();
+			
+			var inputFile = $("input[name='uploadFile']");
+			
+			var files = inputFile[0].files;
+			
+			//console.log("files " +files);
+			 for(var i = 0; i < files.length; i++){
+				if(!checkExtension(files[i].name, files[i].size)){
+				return false;
+				}
+
+				formData.append("uploadFile", files[i]);
+			 }
+				$.ajax({
+					url: '/uploadAjaxAction',
+					processData: false,
+					contentType: false, 
+					data: formData, 
+					type: 'POST',
+					//dataType: 'json',
+					success: function(result){
+						console.log(result)
+						showUploadResult(result);
+					}
+				});  // ajax end
+		
+		});
+		
+		function showUploadResult(uploadResultArr){
+			if(!uploadResultArr || uploadResultArr.length == 0){
+				return;
+			}
+			
+			var uploadUL = $(".uploadResult ul");
+			
+			var str = "";
+			
+			$(uploadResultArr).each(function(i, obj){
+				if(obj.image){
+					var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName);
+					str += "<li><div>";
+					str += "<span> " + obj.fileName +"</span>";
+					str += "<button type='button' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str +"</li>";
+				} else {
+					var fileCallPath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid + "_" + obj.fileName);
+					var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+					str += "<li><div>";
+					str += "<span> " + obj.fileName+"</span>";
+					str += "<button type='button' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<img src='/resources/img/attach.png'></a>";
+					str += "</div>";
+					str +"</li>";
+				}
+			});
+			
+			uploadUL.append(str);
+		}
+		
+		$(".uploadResult").on("click", "button", function(e){
+			console.log("delete file");	
+		});
+		
+	</script>
+	
+	
 </body>
 </html>
