@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+     <mapper namespace="com.spring.mapper.NoticeAttachMapper">
+     
+     <insert id="insert">
+     insert into FileAttach (uuid, uploadpath, filename, filetype, bno)
+     values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno} )
+     </insert>
+     
+     <delete id="delete">
+     delete from FileAttach where uuid = #{uuid} 
+     </delete>
+     
+     <select id="findByBno" resultType="com.spring.imfind.el.domain.NoticeAttachVO">
+     select * from FileAttach where bno = #{bno}
+     </select>
+     
+     </mapper>

@@ -123,9 +123,9 @@ function delBno(noticeBno) {
 				</div>
 				
 				<button data-oper="create" class="btn btn-default"
-					onclick="location.href='./insert'"/>등록</button>
+					onclick="location.href='./insert'">등록</button>
 				<button data-oper="delete" class="btn btn-default"
-					onclick="check();"/>삭제</button>	
+					onclick="check();">삭제</button>	
 										
 				<!-- Modal 추가 -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

@@ -1,5 +1,7 @@
 package com.spring.imfind.el.domain;
 
+import java.util.List;
+
 public class NoticeVO {
 
 	private int noticeBno; // 글번호
@@ -8,7 +10,9 @@ public class NoticeVO {
 	private String id; // 글작성자
 	private String noticeDate; // 글작성일
 	private int readcount; // 조회수
-	private String delYN; // 삭제여부 
+	private String delYN; // 삭제여부
+
+	private List<NoticeAttachVO> attachList;
 
 	public int getNoticeBno() {
 		return noticeBno;
@@ -66,10 +70,19 @@ public class NoticeVO {
 		this.delYN = delYN;
 	}
 
+	public List<NoticeAttachVO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<NoticeAttachVO> attachList) {
+		this.attachList = attachList;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeBno=" + noticeBno + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", id=" + id + ", noticeDate=" + noticeDate + ", readcount=" + readcount + ", delYN=" + delYN + "]";
+				+ ", id=" + id + ", noticeDate=" + noticeDate + ", readcount=" + readcount + ", delYN=" + delYN
+				+ ", attachList=" + attachList + "]";
 	}
 
 }

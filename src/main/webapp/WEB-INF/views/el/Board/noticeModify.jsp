@@ -46,21 +46,7 @@
 					<c:out value="${info.noticeContent }" />
 					</textarea>
 						</div>
-
-
-
-						<%-- <div class="form-group">
-		<label>RegDate</label> <input class="form-control" name="regDate"
-			value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regdate }"/>"
-			readonly="readonly">
-	</div>
-	
-	<div class="form-group">
-		<label>Update</label> <input class="form-control" name="updateDate"
-			value="<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate }"/>"
-			readonly="readonly">
-	</div>
-	 --%>
+s
 						<button type="submit" data-oper="modify" class="btn btn-default">수정완료</button>
 					<!-- 	<button type="submit" data-oper="remove" class="btn btn-danger">Remove</button>
 						<button type="submit" data-oper="list" class="btn btn-info">List</button> -->
