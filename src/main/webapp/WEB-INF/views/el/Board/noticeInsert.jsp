@@ -111,7 +111,8 @@
 				return false;
 			}
 			return true;
-		});
+		}
+		
 		var cloneObj = $(".uploadDiv").clone();
 		//$("input[type='file']").change(function(e){
 		//$(document).ready(function(){
