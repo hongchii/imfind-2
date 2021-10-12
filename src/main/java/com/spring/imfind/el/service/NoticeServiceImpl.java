@@ -39,6 +39,10 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
 		NoticeAttachMapper attachMapper = sqlSession.getMapper(NoticeAttachMapper.class);
+		
+		
+		noticeMapper.insertSelectKey(vo);
+		
 		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
 			return;
 		}
@@ -49,7 +53,7 @@ public class NoticeServiceImpl implements NoticeService {
 			System.out.println("Dddd");
 		});
 		
-		int res = noticeMapper.noticeInsert(vo);
+		//int res = noticeMapper.noticeInsert(vo);
 		
 		return;
 	}

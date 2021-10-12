@@ -5,8 +5,9 @@
      <mapper namespace="com.spring.mapper.NoticeAttachMapper">
      
      <insert id="insert">
-     insert into FileAttach (uuid, uploadpath, filename, filetype, bno)
-     values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno} )
+     insert into imfind.FileAttach 
+     	(uuid, uploadPath, fileName, fileType, bno)
+     values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
      </insert>
      
      <delete id="delete">

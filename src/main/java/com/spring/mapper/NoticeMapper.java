@@ -23,4 +23,6 @@ public interface NoticeMapper {
 	public int getNoticeCount() throws Exception;
 	
 	public int noticeArrDelete(int noticeBno) throws Exception;
+	
+	public void insertSelectKey(NoticeVO vo);
 }

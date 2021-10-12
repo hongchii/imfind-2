@@ -13,6 +13,15 @@
 			(noticeBno, noticeTitle, id, noticeDate, noticeContent, delYN)
 		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent}, #{delYN})
     </insert>
+    	
+    <insert id="insertSelectKey">
+    	<selectKey resultType="int" keyProperty="noticeBno" order="BEFORE">
+    		SELECT MAX(noticeBno)+1 FROM imfind.NoticeBoard
+    	</selectKey>
+    	INSERT INTO imfind.NoticeBoard
+			(noticeBno, noticeTitle, id, noticeDate, noticeContent, delYN)
+		VALUES(#{noticeBno}, #{noticeTitle}, #{id}, now(), #{noticeContent}, #{delYN})
+    </insert>
     
     <select id="getNoticeCount" resultType="Integer">
     	<![CDATA[ SELECT count(*) From imfind.NoticeBoard WHERE delYN = "1" ]]>

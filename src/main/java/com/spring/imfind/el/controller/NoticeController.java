@@ -69,10 +69,10 @@ public class NoticeController {
 		vo.setDelYN("1");
 		
 		if (vo.getAttachList() != null) {
-			vo.getAttachList().forEach(attach -> System.out.println(attach));
+			vo.getAttachList().forEach(attach -> System.out.println("확인::: " + attach));
 		}
 		
-	//	noticeService.noticeInsert(vo);
+		noticeService.noticeInsert(vo);
 		System.out.println("----------->>>>> notice insert controller--------------");
 		
 		return "redirect:/notice";

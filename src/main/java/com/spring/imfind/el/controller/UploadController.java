@@ -35,10 +35,10 @@ import net.coobird.thumbnailator.Thumbnailator;
 public class UploadController {
 
 	@GetMapping("/uploadAjax")
-	public String uploadAjax() {
+	public void uploadAjax() {
 		System.out.println("<--upload ajax-->");
 
-		return "el/Board/uploadAjax";
+		//return "el/Board/uploadAjax";
 	}
 
 	/*
