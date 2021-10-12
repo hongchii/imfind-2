@@ -7,10 +7,67 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
-
+	<div class="bigPictureWrapper">
+		<div class="bigPicture"></div>
+	</div>
+	<style type="text/css">
+		.uploadResult {
+			width: 100%;
+			background-color: white;
+		}
+		
+		.uploadResult ul {
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.uploadResult ul li {
+			list-style none;
+			padding: 10px;
+			align-content: center;
+			text-align: center;
+		}
+		
+		.uploadResult ul li img {
+			width: 100px;
+		}
+		
+		.uploadResult ul li span {
+			color: white;
+		}
+		
+		.bigPictureWrapper {
+			position: absolute;
+			display: none;
+			justify-content: center;
+			align-items: center;
+			top: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: gray;
+			z-index: 100;
+			background: rgba(255,255,255,0.5);
+		}
+		
+		.bigPicture {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.bigPicture img {
+			width: 600px;
+		}
+	
+	</style>
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
+	
 </head>
 <body>
 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
@@ -47,8 +104,25 @@
 					<c:out value="${info.noticeContent }" />
 					</textarea>
 				</div>
-
 				
+				<!-- 파일첨부 -->
+			
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default"
+							style="width: 1000px;">
+							<div class="panel-heading">첨부파일</div>
+							<div class="panel-body">
+								<div class="uploadResult">
+									<ul>
+									</ul>
+								</div>
+								<!-- <button id="uploadBtn">Upload</button> -->
+							</div>
+						</div>
+					</div>
+				</div>
+	
 
 				<button data-oper="modify" class="btn btn-default"
 					onclick="location.href='./getModifyNotice?noticeBno=<c:out value="${info.noticeBno }"/>'">수정</button>
@@ -68,6 +142,42 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
-
+	
+	<script>
+	$(document).ready(function(){
+		(function(){
+			
+			var bno = '<c:out value="${info.noticeBno }"/>';
+			
+			$.getJSON("/getAttachList",{bno : bno}, function(arr){
+				console.log(arr);
+				
+				var str = "";
+				
+				$(arr).each(function(i, attach){
+					
+				//image type
+				if(attach.fileType){
+					var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+					
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid'"+attach.uuid+"'data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str += "</li>";
+				} else {
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid'"+attach.uuid+"'data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+					str += "<span>" + attach.fileName+"</span><br/>"
+					str += "<img src='/resources/img/attach.png'>";
+					str += "</div>";
+					str += "</li>";
+				}
+				});
+				
+				$(".uploadResult ul").html(str);
+			}); // end getJSON
+		})(); // end function 
+	}); // end document ready
+	
+	</script>
 </body>
 </html>

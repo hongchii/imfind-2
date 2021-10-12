@@ -15,7 +15,7 @@
      </delete>
      
      <select id="findByBno" resultType="com.spring.imfind.el.domain.NoticeAttachVO">
-     select * from FileAttach where bno = #{bno}
+     select * from imfind.FileAttach where bno = #{bno}
      </select>
      
      </mapper>

@@ -10,5 +10,5 @@ public interface NoticeAttachMapper {
 	
 	public void delete(String uuid);
 	
-	public List<NoticeAttachVO> findByBno(Long bno);
+	public List<NoticeAttachVO> findByBno(int bno);
 }

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.imfind.el.domain.NoticeAttachVO;
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
 import com.spring.imfind.el.paging.PageMaker;
@@ -122,8 +126,7 @@ public class NoticeController {
 	
 	@RequestMapping("/deleteArrNotice")
 	@ResponseBody
-	public Map<String, String> noticeArrDelete(@RequestParam(value = "noticeBno[]", required = false) String[] noticeBno)
-			throws Exception {
+	public Map<String, String> noticeArrDelete(@RequestParam(value = "noticeBno[]", required = false) String[] noticeBno) throws Exception {
 
 		ArrayList<String> data = new ArrayList<String>();
 		Map<String, String> map = new HashMap<String,String>();
@@ -157,6 +160,15 @@ public class NoticeController {
 		map.put("RESULT", "success");
 		return map;
 
+	}
+	
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<NoticeAttachVO>> getAttachList(int bno) throws Exception {
+		
+		System.out.println("getAttachList :: " + bno);
+		
+		return new ResponseEntity<>(noticeService.getAttachList(bno), HttpStatus.OK);
 	}
 
 }
