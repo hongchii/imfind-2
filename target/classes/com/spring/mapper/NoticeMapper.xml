@@ -26,6 +26,7 @@
     <select id="getNoticeCount" resultType="Integer">
     	<![CDATA[ SELECT count(*) From imfind.NoticeBoard WHERE delYN = "1" ]]>
     </select>
+    
     <select id="getNoticeInfo" resultType="com.spring.imfind.el.domain.NoticeVO">
     	SELECT * From imfind.NoticeBoard WHERE noticeBno = #{noticeBno}
     </select>
