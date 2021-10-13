@@ -151,7 +151,7 @@
 						   
 				} else {
 					var fileCallPath = encodeURIComponent(obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName);
-					var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+					//var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 					
 					str += "<li "
 					str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";

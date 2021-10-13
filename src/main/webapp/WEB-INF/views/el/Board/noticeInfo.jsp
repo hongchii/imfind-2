@@ -176,6 +176,55 @@
 				$(".uploadResult ul").html(str);
 			}); // end getJSON
 		})(); // end function 
+		
+		/*
+		$(".uploadResult").on("click", "li", function(e){
+			console.log("view image");
+	
+			var liObj = $(this);
+			console.log("this" + $(this));
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("fileName"));
+			console.log("path 확인 : " + path );
+			console.log("1path:: "+liObj.data("path"));
+			console.log("2uuid:: "+liObj.data("uuid"));
+			console.log("3filename:: "+liObj.data("filename"));
+			
+			console.log(liObj.data("type"));
+			if(liObj.data("type")){
+				//showImage(path.replace(new RegExp(/\\/g),"/"));
+				showImage(path);
+				console.log("if");
+			} else {
+				showImage(path);
+				//self.location = "/download?fileName="+path;
+				console.log("else");
+			}
+			
+		}); // end uploadResult click
+	
+		
+		
+		function showImage(fileCallPath){
+			alert(fileCallPath);
+			
+			$(".bigPictureWrapper").css("display", "flex").show();
+			
+			$(".bigPicture")
+			.html("<img src='/display?fileName="+fileCallPath+"'>")
+			.animate({width: '100%', height: '100%'}, 1000);
+			
+		}
+		
+		$(".bigPictureWrapper").on("click", function(e){
+			$(".bigPicture").animate({width: '100%', height: '100%'}, 1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+			}, 1000);
+		});
+		
+			*/
+			
 	}); // end document ready
 	
 	</script>

@@ -11,4 +11,6 @@ public interface NoticeAttachMapper {
 	public void delete(String uuid);
 	
 	public List<NoticeAttachVO> findByBno(int bno);
+	
+	public void deleteAll(int bno);
 }
