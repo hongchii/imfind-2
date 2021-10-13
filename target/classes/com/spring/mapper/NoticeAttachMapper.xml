@@ -19,6 +19,6 @@
      </select>
      
      <delete id="deleteAll">
-     delete imfind.FileAttach where bno = #{bno}
+     delete from imfind.FileAttach where bno = #{bno}
      </delete>
      </mapper>

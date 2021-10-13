@@ -91,6 +91,9 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("---------->>>>> notice delete serviceImpl----------------");
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		NoticeAttachMapper attachMapper = sqlSession.getMapper(NoticeAttachMapper.class);
+		
+		attachMapper.deleteAll(vo.getNoticeBno());
 		int res = noticeMapper.noticeDelete(vo);
 		
 		return res;

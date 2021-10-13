@@ -1,5 +1,8 @@
 package com.spring.imfind.el.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -118,7 +121,15 @@ public class NoticeController {
 	public String noticeDelete(NoticeVO vo) throws Exception {
 		
 		vo.setDelYN("0");
+		
+		List<NoticeAttachVO> attachList = noticeService.getAttachList(vo.getNoticeBno());
+	
 		int res = noticeService.noticeDelete(vo);
+		
+		if (res > 0) {
+			deleteFiles(attachList);
+		}
+		
 		System.out.println("----------->>>>> notice delete controller--------------");
 		
 		return "redirect:/notice";
@@ -169,6 +180,31 @@ public class NoticeController {
 		System.out.println("getAttachList :: " + bno);
 		
 		return new ResponseEntity<>(noticeService.getAttachList(bno), HttpStatus.OK);
+	}
+	
+	private void deleteFiles(List<NoticeAttachVO> attachList) {
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		System.out.println("delete attach files-----");
+		System.out.println(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("/Users/hongmac/Documents/upload/temp/"+attach.getUploadPath()+"/"+attach.getUuid()+"/"+attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("/Users/hongmac/Documents/upload/temp/"+attach.getUploadPath()+"/"+attach.getUuid()+"/"+attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}
+			} catch(Exception e) {
+				System.out.println("delete file error" + e.getMessage());
+			}
+		});
 	}
 
 }
