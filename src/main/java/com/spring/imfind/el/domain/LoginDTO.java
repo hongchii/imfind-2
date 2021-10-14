@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.YH;
+package com.spring.imfind.el.domain;
 
 public class LoginDTO {
 	private String id;

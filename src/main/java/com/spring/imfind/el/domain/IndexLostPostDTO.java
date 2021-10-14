@@ -1,4 +1,4 @@
-package com.spring.imfind.el.MJ;
+package com.spring.imfind.el.domain;
 
 import java.util.Date;
 

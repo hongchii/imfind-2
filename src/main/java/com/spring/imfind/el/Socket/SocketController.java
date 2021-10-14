@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Socket;
+package com.spring.imfind.el.socket;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.imfind.el.YH.SessionName;
+import com.spring.imfind.el.common.SessionName;
 import com.spring.imfind.el.domain.ItemVO;
 
 @Controller

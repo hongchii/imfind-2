@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.imfind.el.MJ.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ComVO;
+import com.spring.imfind.el.domain.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ItemVO;
 import com.spring.imfind.el.domain.LostComVO;
 import com.spring.imfind.el.domain.MemberVO;

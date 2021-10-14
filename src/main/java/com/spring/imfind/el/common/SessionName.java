@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.YH;
+package com.spring.imfind.el.common;
 
 public interface SessionName {
 	static final String LOGIN = "loginUser";

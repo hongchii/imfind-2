@@ -3,8 +3,8 @@ package com.spring.imfind.el.service;
 
 import java.util.List;
 
-import com.spring.imfind.el.MJ.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ComVO;
+import com.spring.imfind.el.domain.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ItemVO;
 import com.spring.imfind.el.domain.LostComVO;
 import com.spring.imfind.el.domain.MemberVO;

@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Socket;
+package com.spring.imfind.el.socket;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
-import com.spring.imfind.el.YH.SessionName;
+import com.spring.imfind.el.common.SessionName;
 
 public class HandShakeInterceptor extends HttpSessionHandshakeInterceptor implements SessionName {
 

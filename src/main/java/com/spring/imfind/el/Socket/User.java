@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Socket;
+package com.spring.imfind.el.socket;
 
 public class User {
 	private String loginUser;

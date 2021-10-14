@@ -1,7 +1,7 @@
 
 package com.spring.mapper;
 
-import com.spring.imfind.el.YH.LoginDTO;
+import com.spring.imfind.el.domain.LoginDTO;
 import com.spring.imfind.el.domain.MemberVO;
 
 public interface ModifyMapper {

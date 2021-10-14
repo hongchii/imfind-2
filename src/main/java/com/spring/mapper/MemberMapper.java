@@ -2,7 +2,7 @@ package com.spring.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.imfind.el.YH.LoginDTO;
+import com.spring.imfind.el.domain.LoginDTO;
 
 public interface MemberMapper {
 

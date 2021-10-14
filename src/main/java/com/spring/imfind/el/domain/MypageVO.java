@@ -1,4 +1,4 @@
-package com.spring.imfind.el.YS;
+package com.spring.imfind.el.domain;
 
 import java.sql.Date;
 
@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 // F_id, 하나 더 아마 grade
-public class ElVO {
+public class MypageVO {
 	private int Lost_PostNum;
 	private String Lost_Title;
 	private String Lost_Content;

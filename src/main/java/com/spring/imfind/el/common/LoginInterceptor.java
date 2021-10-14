@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.YH;
+package com.spring.imfind.el.common;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.Cookie;

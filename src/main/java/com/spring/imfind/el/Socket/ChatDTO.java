@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Socket;
+package com.spring.imfind.el.socket;
 
 import java.util.Date;
 

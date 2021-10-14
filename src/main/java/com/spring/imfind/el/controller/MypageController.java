@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.YS;
+package com.spring.imfind.el.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.imfind.el.YH.AlarmDTO;
-import com.spring.imfind.el.YH.AlarmService;
+import com.spring.imfind.el.domain.MypageVO;
+import com.spring.imfind.el.service.MypageService;
 
 @Controller
-public class YSController {
+public class MypageController {
 	@Autowired
-	private ElService elService;
+	private MypageService elService;
 
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest request) {
@@ -32,46 +32,46 @@ public class YSController {
 
 	@RequestMapping(value = "/getElsedata", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public List<ElVO> getElsedata(HttpServletRequest request) {
+	public List<MypageVO> getElsedata(HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
 
-		List<ElVO> list = elService.getElsedata(id);
+		List<MypageVO> list = elService.getElsedata(id);
 		return list;
 	}
 
 	@RequestMapping(value = "/getPetElsedata", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public List<ElVO> getPetElsedata(HttpServletRequest request) {
+	public List<MypageVO> getPetElsedata(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
-		List<ElVO> listpet = elService.getPetElsedata(id);
+		List<MypageVO> listpet = elService.getPetElsedata(id);
 		return listpet;
 	}
 
 	@RequestMapping(value = "/getElsePaydata", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public List<ElVO> getElsePaydata(HttpServletRequest request) {
+	public List<MypageVO> getElsePaydata(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
-		List<ElVO> list2 = elService.getElsePaydata(id);
+		List<MypageVO> list2 = elService.getElsePaydata(id);
 		return list2;
 	}
 
 	@RequestMapping(value = "/getElseWhoReplied", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public List<ElVO> getElseWhoReplied(String params) {
+	public List<MypageVO> getElseWhoReplied(String params) {
 
-		List<ElVO> list3 = elService.getElseWhoReplied(params);
+		List<MypageVO> list3 = elService.getElseWhoReplied(params);
 		return list3;
 	}
 
 	@RequestMapping(value = "/getElseWhoRepliedPet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public List<ElVO> getElseWhoRepliedPet(String params) {
+	public List<MypageVO> getElseWhoRepliedPet(String params) {
 
-		List<ElVO> list3 = elService.getElseWhoRepliedPet(params);
+		List<MypageVO> list3 = elService.getElseWhoRepliedPet(params);
 		return list3;
 	}
 
@@ -80,7 +80,7 @@ public class YSController {
 	@ResponseBody
 	public Map<String, Object> insertGrade(@RequestBody HashMap<String, String> map) {
 
-		ElVO elvo = new ElVO();
+		MypageVO elvo = new MypageVO();
 
 		elvo.setF_Id(map.get("F_Id"));
 
@@ -111,7 +111,7 @@ public class YSController {
 	@ResponseBody
 	public Map<String, Object> insertGradePet(@RequestBody HashMap<String, String> map) {
 
-		ElVO elvo = new ElVO();
+		MypageVO elvo = new MypageVO();
 
 		elvo.setF_Id(map.get("F_Id"));
 		elvo.setGrade(Integer.parseInt(map.get("grade")));
@@ -145,10 +145,10 @@ public class YSController {
 	@RequestMapping(value = "/getStarGrade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int getStarGrade(@RequestParam(value = "F_Id") String F_id) {
-		List<ElVO> list = elService.getStarGrade(F_id);
+		List<MypageVO> list = elService.getStarGrade(F_id);
 		int sum = 0;
 		int avg = 0;
-		for (ElVO el : list) {
+		for (MypageVO el : list) {
 			sum += el.getGrade();
 			avg = sum / list.size();
 		}
@@ -157,11 +157,11 @@ public class YSController {
 	
    @RequestMapping(value = "/getLiketo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
    @ResponseBody
-   public List<ElVO> getLiketo(HttpServletRequest request) {
+   public List<MypageVO> getLiketo(HttpServletRequest request) {
       HttpSession session = request.getSession();
       String id = (String) session.getAttribute("loginUser");
 
-      List<ElVO> list = elService.getlike(id);
+      List<MypageVO> list = elService.getlike(id);
       return list;
    }
 

@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.YH;
+package com.spring.imfind.el.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -24,10 +24,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.spring.imfind.el.YS.ElVO;
+import com.spring.imfind.el.common.EmailSend;
+import com.spring.imfind.el.common.OpenBanking;
+import com.spring.imfind.el.common.Tempkey;
+import com.spring.imfind.el.domain.AlarmDTO;
+import com.spring.imfind.el.domain.LoginDTO;
+import com.spring.imfind.el.service.AlarmService;
+import com.spring.imfind.el.service.MemberService;
 
 @Controller
-public class YHController {
+public class MemberController {
 
 	@RequestMapping("/NewHeader_CSS")
 	public String NewHeader_CSS() {

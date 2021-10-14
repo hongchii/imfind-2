@@ -1,7 +1,9 @@
 
-package com.spring.imfind.el.YH;
+package com.spring.imfind.el.service;
 
 import org.springframework.stereotype.Service;
+
+import com.spring.imfind.el.domain.LoginDTO;
 
 @Service
 public interface MemberService {

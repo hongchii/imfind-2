@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Money;
+package com.spring.imfind.el.money;
 
 import java.sql.Date;
 

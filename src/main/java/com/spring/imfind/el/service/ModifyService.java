@@ -1,6 +1,6 @@
 package com.spring.imfind.el.service;
 
-import com.spring.imfind.el.YH.LoginDTO;
+import com.spring.imfind.el.domain.LoginDTO;
 import com.spring.imfind.el.domain.MemberVO;
 
 public interface ModifyService {

@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.imfind.el.MJ.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ComVO;
+import com.spring.imfind.el.domain.IndexLostPostDTO;
 import com.spring.imfind.el.domain.ItemVO;
 import com.spring.imfind.el.domain.LostComVO;
 import com.spring.imfind.el.domain.MemberVO;

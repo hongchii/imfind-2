@@ -3,8 +3,8 @@ package com.spring.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.imfind.el.Socket.ChatDTO;
 import com.spring.imfind.el.domain.ItemVO;
+import com.spring.imfind.el.socket.ChatDTO;
 
 public interface ChatMapper {
 	public int createChatRoom(ChatDTO dto);

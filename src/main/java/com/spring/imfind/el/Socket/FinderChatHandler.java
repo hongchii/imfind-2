@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.Socket;
+package com.spring.imfind.el.socket;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.spring.imfind.el.YH.SessionName;
+import com.spring.imfind.el.common.SessionName;
 
 public class FinderChatHandler extends TextWebSocketHandler implements SessionName {
 
