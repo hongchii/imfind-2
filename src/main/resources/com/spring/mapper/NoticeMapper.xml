@@ -50,40 +50,38 @@
   	</update>  
   	
   	<!-- 검색 -->
-  	
+
+   	
 	<sql id="criteria">
-	<trim prefix="AND (" prefixOverrides="OR" suffix=")">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 		<foreach collection="typeArr" item="type">
 			<trim prefix="OR">
 				<choose>
 					<when test="type == 'T'.toString()">
-						noticeTitle like '%'||#{keyword}||'%'
+						noticeTitle like CONCAT('%',#{keyword},'%')
 					</when>
 					<when test="type == 'C'.toString()">
-						noticeContent like '%'||#{keyword}||'%'
+						noticeContent like CONCAT('%',#{keyword},'%')
 					</when>
 				</choose>	
 			</trim>
 		</foreach>
 	</trim>
-	</sql>
-			
+	</sql> 
+
   	<select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
   		<![CDATA[
-  			SELECT noticeBno, noticeTitle, noticeContent, id, noticeDate FROM 
-  			 	(select noticeBno, noticeTitle, noticeContent, id, noticeDate
-  			 		from
+  			 SELECT noticeBno, noticeTitle, noticeContent, id, noticeDate FROM 
   			 	imfind.NoticeBoard
-  			WHERE
+  			WHERE 
   		]]>
 		<include refid="criteria"></include>  			
 		
-		<!-- <![CDATA[
-			noticeBno <= #{page} * #{perPageNum}
-			)
-			noticeBno > (#{page} - 1) * #{perPageNum}
-		]]> -->
-		)
+		<![CDATA[
+			delYN = "1" and noticeBno > 0
+			order by noticeBno desc limit #{pageStart}, #{perPageNum}
+		]]>
+		
   	</select>
     
     <select id="getTotalCount" resultType="int">

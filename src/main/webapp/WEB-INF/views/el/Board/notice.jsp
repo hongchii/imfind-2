@@ -53,7 +53,6 @@
 				<!-- 검색 -->
 				<div class='row'>
 					<div class="col-lg-12">
-						
 						<form id='searchForm' action="/notice" method="get">
 							<select name='type'>
 								<option value=""
@@ -93,6 +92,8 @@
 					    </li>
 					    </c:if>
 					</ul>
+ 					<input type="hidden" name="type" value='${pageMaker.cri.type }'/>
+					<input type="hidden" name="keyword" value='${pageMaker.cri.keyword}' /> 
 
 				</div>
 				
