@@ -4,9 +4,9 @@
 
     <mapper namespace="com.spring.mapper.NoticeMapper">
     
-    <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
+ <!--    <select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
 	   	SELECT * From imfind.NoticeBoard WHERE delYN = "1" order by noticeBno desc limit #{pageStart}, #{perPageNum}
-   	</select>
+   	</select> -->
     
     <insert id="noticeInsert" >
     	INSERT INTO imfind.NoticeBoard
@@ -48,5 +48,48 @@
     <update id="noticeArrDelete" parameterType="int">
    		UPDATE imfind.NoticeBoard SET delYN="0" WHERE noticeBno=#{noticeBno}
   	</update>  
+  	
+  	<!-- 검색 -->
+  	
+	<sql id="criteria">
+	<trim prefix="AND (" prefixOverrides="OR" suffix=")">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type == 'T'.toString()">
+						noticeTitle like '%'||#{keyword}||'%'
+					</when>
+					<when test="type == 'C'.toString()">
+						noticeContent like '%'||#{keyword}||'%'
+					</when>
+				</choose>	
+			</trim>
+		</foreach>
+	</trim>
+	</sql>
+			
+  	<select id="getNoticeList" resultType="com.spring.imfind.el.domain.NoticeVO">
+  		<![CDATA[
+  			SELECT noticeBno, noticeTitle, noticeContent, id, noticeDate FROM 
+  			 	(select noticeBno, noticeTitle, noticeContent, id, noticeDate
+  			 		from
+  			 	imfind.NoticeBoard
+  			WHERE
+  		]]>
+		<include refid="criteria"></include>  			
+		
+		<!-- <![CDATA[
+			noticeBno <= #{page} * #{perPageNum}
+			)
+			noticeBno > (#{page} - 1) * #{perPageNum}
+		]]> -->
+		)
+  	</select>
     
+    <select id="getTotalCount" resultType="int">
+    select count(*) from imfind.NoticeBoard 
+    where
+    <include refid="criteria"></include> 
+    noticeBno > 0	
+    </select>
     </mapper>

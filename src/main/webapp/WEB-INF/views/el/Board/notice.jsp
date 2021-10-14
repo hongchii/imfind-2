@@ -11,57 +11,6 @@
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include> 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script>
-function check() {
-		
-	var confirm_val = confirm("정말 삭제하시겠습니까?");
-		
-		if(confirm_val) {
-			
-			
-			var cnt = $("input[name='notice_del_yn']:checked").length; // 체크된것의 갯수를 구함.
-			var noticeBno = new Array(); // 체크된 것의 bno를  배열에 담기위해. 
-			$("input[name='notice_del_yn']:checked").each(function() {
-				
-				noticeBno.push($(this).attr('id'));
-				//each함수를 사용해 체크된 것의 id = bno 를 checkArr 배열에 담아줌.
-				
-			});
-			delBno(noticeBno);
-			console.log("체크1 ====> " + noticeBno)
-			
-		} else {
-			
-			alert("#");
-			
-		}
-	
-}	
-function delBno(noticeBno) {
-		console.log("체크2 ====> " + noticeBno)
-		
-		$.ajax({
-			  url : '/deleteArrNotice',
-			  contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			  data : { "noticeBno" : noticeBno },
-			  type : 'POST',
-			  dataType : 'JSON',
-			  success : function(data){
-				  	console.log("console--" + data);
-				 	if(data.RESULT == 'success') {
-				 		alert("삭제 성공")
-				 		location.href = "/notice";
-				 	} else {
-				 		alert("삭제 실패")
-				 	}
-			  },//success끝
-			  error:function(request,status,error){
-			        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			  }
-		  }); 
-		  
-}
-</script>
 	
 </head>
 <body>
@@ -100,6 +49,31 @@ function delBno(noticeBno) {
 					</c:forEach>
 				</table>
 				<!-- /.table-responsive -->
+				
+				<!-- 검색 -->
+				<div class='row'>
+					<div class="col-lg-12">
+						
+						<form id='searchForm' action="/notice" method="get">
+							<select name='type'>
+								<option value=""
+								<c:out value="${pageMaker.cri.type == null ?'selected':'' }"/>>선택</option>
+								<option value="T"
+								<c:out value="${pageMaker.cri.type eq 'T' ?'selected':'' }"/>>제목</option>
+								<option value="C"
+								<c:out value="${pageMaker.cri.type eq 'T' ?'selected':'' }"/>>내용</option>
+								<option value="TC"
+								<c:out value="${pageMaker.cri.type eq 'TC' ?'selected':'' }"/>>제목 or 내용</option>
+								
+							</select>
+							<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword }"/>'/>
+						    <input type="hidden" name="pageNum" value='${pageMaker.cri.page}' />
+							<input type="hidden" name="perPageNum" value='${pageMaker.cri.perPageNum}' />
+							<button class='btn btn-default'>검색</button>
+						</form>
+					</div>
+				</div>
+				
 				
 				<div class="paging" style="margin-left: 500px;">
 					<ul class="btn-group pagination" style = "display : flex;">
@@ -167,5 +141,77 @@ function delBno(noticeBno) {
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
 
+	<script>
+	function check() {
+			
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
+			
+			if(confirm_val) {
+				
+				
+				var cnt = $("input[name='notice_del_yn']:checked").length; // 체크된것의 갯수를 구함.
+				var noticeBno = new Array(); // 체크된 것의 bno를  배열에 담기위해. 
+				$("input[name='notice_del_yn']:checked").each(function() {
+					
+					noticeBno.push($(this).attr('id'));
+					//each함수를 사용해 체크된 것의 id = bno 를 checkArr 배열에 담아줌.
+					
+				});
+				delBno(noticeBno);
+				console.log("체크1 ====> " + noticeBno)
+				
+			} else {
+				
+				alert("#");
+				
+			}
+		
+	}	
+	function delBno(noticeBno) {
+			console.log("체크2 ====> " + noticeBno)
+			
+			$.ajax({
+				  url : '/deleteArrNotice',
+				  contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+				  data : { "noticeBno" : noticeBno },
+				  type : 'POST',
+				  dataType : 'JSON',
+				  success : function(data){
+					  	console.log("console--" + data);
+					 	if(data.RESULT == 'success') {
+					 		alert("삭제 성공")
+					 		location.href = "/notice";
+					 	} else {
+					 		alert("삭제 실패")
+					 	}
+				  },//success끝
+				  error:function(request,status,error){
+				        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				  }
+			  }); 
+			  
+	}
+	
+	// 검색 이벤트
+	var searchForm = $("#searchForm");
+	
+	$("#searchForm button").on("click", function(e){
+		
+		if(!searchForm.find("option:selected").val()){
+			alert("검색종류를 선택하세요");		
+			return false;
+		}
+		
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert("키워드를 입력하세요");		
+			return false;
+		}
+		
+		serachForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			serachForm.submit();
+	debugger;
+	}); // end searchForm onclick
+</script>
 </body>
 </html>
