@@ -128,7 +128,7 @@
 				<button data-oper="modify" class="btn btn-default"
 					onclick="location.href='./getModifyNotice?noticeBno=<c:out value="${info.noticeBno }"/>'">수정</button>
 				<button data-oper="list" class="btn btn-info"
-					onclick="location.herf='./notice'">목록</button>
+					onclick="location.href='./notice'">목록</button>
 				<button data-oper="delete" class="btn btn-default"
 					onclick="location.href='./deleteNotice?noticeBno=<c:out value="${info.noticeBno }"/>'">삭제</button>	
 

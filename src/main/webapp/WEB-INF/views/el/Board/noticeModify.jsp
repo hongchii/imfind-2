@@ -98,7 +98,7 @@
 					<c:out value="${info.noticeContent }" />
 					</textarea>
 						</div>
-
+	</form>
 					
 					<!-- 파일첨부 -->
 					<div class="bigPictureWrapper">
@@ -125,10 +125,10 @@
 						</div>
 					</div>
 					
-						<button type="submit" data-oper="modify" class="btn btn-default">수정완료</button>
 					<!-- 	<button type="submit" data-oper="remove" class="btn btn-danger">Remove</button>
 						<button type="submit" data-oper="list" class="btn btn-info">List</button> -->
-					</form>
+					
+						<button type="submit" data-oper="modify" class="btn btn-default">수정완료</button>
 					
 					
 				</div>
@@ -251,7 +251,6 @@
 			
 			if (obj.image) {
 				var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName);
-				//var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 				
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";
@@ -261,13 +260,9 @@
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str += "</li>";
-				/* <a href='/download?fileName="+fileCallPath+"'>"+
-					   "<img src='/resources/el/img/attach.png'>"+obj.fileName+"</a>"+
-					   "<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>"+"<div></li>" */
 					   
 			} else {
 				var fileCallPath = encodeURIComponent(obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName);
-				//var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 				
 				str += "<li "
 				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";
@@ -277,12 +272,6 @@
 				str += "</div>";
 				str += "</li>";
 				
-				/* var originPath = obj.uploadPath + "/" + obj.uuid +"_"+obj.fileName;
-				originPath = originPath.replace(new RegExp(/\\/g),"/");
-				
-				str += "<li><a href=\"javascript:showImage(\'"+originPath+"\')\">"+
-					   "<img src='/display?fileName="+fileCallPath+"'></a>"+
-					   "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+"<li>"; */
 			}
 		});
 		
