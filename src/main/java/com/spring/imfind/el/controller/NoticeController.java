@@ -147,8 +147,12 @@ public class NoticeController {
 
 			int noticeBno1 = Integer.parseInt(bno);
 			int res = noticeService.noticeArrDelete(noticeBno1);
-
+			List<NoticeAttachVO> attachList = noticeService.getAttachList(noticeBno1);
+			System.out.println("delete attachList :: " + attachList);
+			deleteFiles(attachList);
+			
 			if (res > 0) {
+				
 				System.out.println("성공");
 				data.add("success");
 				

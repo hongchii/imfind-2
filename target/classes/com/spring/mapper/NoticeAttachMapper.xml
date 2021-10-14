@@ -11,7 +11,7 @@
      </insert>
      
      <delete id="delete">
-     delete from FileAttach where uuid = #{uuid} 
+     delete from imfind.FileAttach where uuid = #{uuid} 
      </delete>
      
      <select id="findByBno" resultType="com.spring.imfind.el.domain.NoticeAttachVO">

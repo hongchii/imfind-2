@@ -73,14 +73,29 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return vo;
 	}
-
+	
+	@Transactional
 	@Override
 	public int noticeModify(NoticeVO vo) throws Exception {
 		
 		System.out.println("---------->>>>> notice modify serviceImpl----------------");
 		
 		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		NoticeAttachMapper attachMapper = sqlSession.getMapper(NoticeAttachMapper.class);
+		
+		attachMapper.deleteAll(vo.getNoticeBno());
+		
 		int res = noticeMapper.noticeModify(vo);
+		
+		if (res != 0) {
+			if(vo.getAttachList() != null && vo.getAttachList().size() > 0) {
+				vo.getAttachList().forEach(attach -> {
+					attach.setBno(vo.getNoticeBno());
+					attachMapper.insert(attach);
+				
+				});
+			}	
+		}
 		
 		return res;
 	}

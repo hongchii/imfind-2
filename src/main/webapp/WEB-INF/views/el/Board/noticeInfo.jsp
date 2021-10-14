@@ -7,9 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
-	<div class="bigPictureWrapper">
-		<div class="bigPicture"></div>
-	</div>
+	
 	<style type="text/css">
 		.uploadResult {
 			width: 100%;
@@ -106,7 +104,10 @@
 				</div>
 				
 				<!-- 파일첨부 -->
-			
+				<div class="bigPictureWrapper">
+					<div class="bigPicture"></div>
+				</div>
+				
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default"

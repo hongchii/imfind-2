@@ -43,7 +43,6 @@
 							<textarea class="form-control" rows="3" name="noticeContent"></textarea>
 
 						</div>
-						<button type="submit" class="btn btn-default">등록</button>
 					</form>
 				</div>
 				<!-- end panel-body -->
@@ -76,6 +75,7 @@
 		</div>
 	</div>
 	
+						<button type="submit" class="btn btn-default">등록</button>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 	<script>
 		
