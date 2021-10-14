@@ -21,4 +21,8 @@
      <delete id="deleteAll">
      delete from imfind.FileAttach where bno = #{bno}
      </delete>
+     
+     <select id="getOldFiles" resultType="com.spring.imfind.el.domain.NoticeAttachVO">
+     select * from imfind.FileAttach where uploadpath = to_char(now() - 1, 'yyyy\mm\dd')
+     </select>
      </mapper>

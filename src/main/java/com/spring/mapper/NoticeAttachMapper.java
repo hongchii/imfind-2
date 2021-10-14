@@ -13,4 +13,6 @@ public interface NoticeAttachMapper {
 	public List<NoticeAttachVO> findByBno(int bno);
 	
 	public void deleteAll(int bno);
+	
+	public List<NoticeAttachVO> getOldFiles();
 }
