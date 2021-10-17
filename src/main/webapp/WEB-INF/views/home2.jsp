@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.imfind.imf.PoliceVO"%>
-<%@ page import="com.spring.imfind.el.YH.LoginDTO"%>
+<%@ page import="com.spring.imfind.el.domain.LoginDTO"%>
 <%@ page import="com.spring.imfind.el.domain.ItemVO"%>
 <%@ page import="com.spring.imfind.el.domain.PetVO"%>
 <%@ page import="java.text.SimpleDateFormat" %>
