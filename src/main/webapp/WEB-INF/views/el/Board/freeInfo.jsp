@@ -78,7 +78,7 @@
 			<div class="panel-body" style="margin-top: 30px; width: 1030px;">
 
 				<div class="form-group">
-					<label>글번호</label> <input class="form-control" name="noticeBno"
+					<label>글번호</label> <input class="form-control" name="FreeBno"
 						value="<c:out value="${info.freeBno }"/>" readonly="readonly">
 					
 					<label>조회수</label> <input class="form-control" name="readCount"
@@ -86,18 +86,18 @@
 				</div>
 				
 				<div class="form-group">
-					<label>작성자</label> <input class="form-control" name="noticeId"
+					<label>작성자</label> <input class="form-control" name="freeId"
 						value="<c:out value="${info.id }"/>" readonly="readonly">
 				</div>
 
 				<div class="form-group">
-					<label>제목</label><input class="form-control" name="noticeTitle"
+					<label>제목</label><input class="form-control" name="freeTitle"
 						value="<c:out value="${info.freeTitle }"/>" readonly="readonly">
 				</div>
 
 				<div class="form-group">
 					<label>내용</label>
-					<textarea class="form-control" rows="3" name="noticeContent"
+					<textarea class="form-control" rows="3" name="freeContent"
 						readonly="readonly">
 					<c:out value="${info.freeContent }" />
 					</textarea>

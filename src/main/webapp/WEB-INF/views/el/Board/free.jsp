@@ -19,7 +19,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default" style="margin-top: 100px; width: 1030px;margin-left: 250px;">
 			<div class="panel-heading">
-				공지사항
+				자유게시판
 			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body" style="margin-top: 30px; width: 1030px;">
@@ -78,17 +78,17 @@
 					<ul class="btn-group pagination" style = "display : flex;">
 					    <c:if test="${pageMaker.prev }">
 					    <li>
-					        <a href='<c:url value="/notice?page=${pageMaker.startPage-1}"/>'><i class="fa fa-chevron-left"></i></a>
+					        <a href='<c:url value="/free?page=${pageMaker.startPage-1}"/>'><i class="fa fa-chevron-left"></i></a>
 					    </li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 					    <li>
-					        <a href='<c:url value="/notice?page=${pageNum}"/>'><i class="fa">${pageNum }</i></a>
+					        <a href='<c:url value="/free?page=${pageNum}"/>'><i class="fa">${pageNum }</i></a>
 					    </li>
 					    </c:forEach>
 					    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 					    <li>
-					        <a href='<c:url value="/notice?page=${pageMaker.endPage+1}"/>'><i class="fa fa-chevron-right"></i></a>
+					        <a href='<c:url value="/free?page=${pageMaker.endPage+1}"/>'><i class="fa fa-chevron-right"></i></a>
 					    </li>
 					    </c:if>
 					</ul>
@@ -154,7 +154,7 @@
 				var freeBno = new Array(); // 체크된 것의 bno를  배열에 담기위해. 
 				$("input[name='free_del_yn']:checked").each(function() {
 					
-					noticeBno.push($(this).attr('id'));
+					freeBno.push($(this).attr('id'));
 					//each함수를 사용해 체크된 것의 id = bno 를 checkArr 배열에 담아줌.
 					
 				});
