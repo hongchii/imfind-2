@@ -7,80 +7,143 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판</title>
-
+	
+	<style type="text/css">
+		.uploadResult {
+			width: 100%;
+			background-color: white;
+		}
+		
+		.uploadResult ul {
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.uploadResult ul li {
+			list-style none;
+			padding: 10px;
+			align-content: center;
+			text-align: center;
+		}
+		
+		.uploadResult ul li img {
+			width: 100px;
+		}
+		
+		.uploadResult ul li span {
+			color: white;
+		}
+		
+		.bigPictureWrapper {
+			position: absolute;
+			display: none;
+			justify-content: center;
+			align-items: center;
+			top: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: gray;
+			z-index: 100;
+			background: rgba(255,255,255,0.5);
+		}
+		
+		.bigPicture {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.bigPicture img {
+			width: 600px;
+		}
+	
+	</style>
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
+	
 </head>
 <body>
-	
-	<div class="wrap">
-		<div class="content_wrap">
-			<div class="contents">
-				<div class="table_detail_wrap"
-					style="width: 1000px; margin-left: 200px;">
-					<h1 class="title" style="margin-left: 250px; margin-top: 100px;">자유게시판</h1>
-					<table>
-						<colgroup>
-							<col style="width: 5%;" />
-							<col style="width: 10%;" />
-							<col style="width: 15%;" />
-							<col style="width: 10%;" />
-							<col style="width: 35%;" />
-							<col style="width: 10%;" />
-							<col style="width: 10%;" />
-						</colgroup>
+	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+	<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default" style="margin-top: 100px; width: 1030px;margin-left: 250px;">
 
-						<tbody>
-						<tr>
-				<td style="font-family:돋음; font-size:12" height="16">
-					<div align="center">제 목&nbsp;&nbsp;</div>
-				</td>
-				
-				<td style="font-family:돋음; font-size:12">
-				${info.freeTitle }
-				</td>
-			</tr>
-			
-			<tr bgcolor="cccccc">
-				<td colspan="2" style="height:1px;">
-				</td>
-			</tr>
-			
-			<tr>
-				<td style="font-family:돋음; font-size:12">
-					<div align="center">내 용</div>
-				</td>
-				<td style="font-family:돋음; font-size:12">
-					<table border=0 width=490 height=250 style="table-layout:fixed">
-						<tr>
-							<td valign=top style="font-family:돋음; font-size:12">
-							${info.freeContent }
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	
-						</tbody>
-					</table>
+			<div class="panel-heading">자유게시판</div>
+			<!-- /.pannel-heading -->
+			<div class="panel-body" style="margin-top: 30px; width: 1030px;">
+
+				<div class="form-group">
+					<label>글번호</label> <input class="form-control" name="noticeBno"
+						value="<c:out value="${info.freeBno }"/>" readonly="readonly">
+					
+					<label>조회수</label> <input class="form-control" name="readCount"
+						value="<c:out value="${info.readcount }"/>" readonly="readonly">	
 				</div>
-					<tr align="center" valign="middle">
-						<td colspan="5">
-							<font size=2>
-							<a href="./getModifyFree?freeBno=${info.freeBno }">[수정]</a>&nbsp;&nbsp;
-							<a href="./deleteFree?freeBno=${info.freeBno }">[삭제]</a>&nbsp;&nbsp;
-							<a href="./free">[목록]</a>&nbsp;&nbsp;
-							</font>
-						</td>
-					</tr>
+				
+				<div class="form-group">
+					<label>작성자</label> <input class="form-control" name="noticeId"
+						value="<c:out value="${info.id }"/>" readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>제목</label><input class="form-control" name="noticeTitle"
+						value="<c:out value="${info.freeTitle }"/>" readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>내용</label>
+					<textarea class="form-control" rows="3" name="noticeContent"
+						readonly="readonly">
+					<c:out value="${info.freeContent }" />
+					</textarea>
+				</div>
+				
+				<!-- 파일첨부 -->
+				<div class="bigPictureWrapper">
+					<div class="bigPicture"></div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default"
+							style="width: 1000px;">
+							<div class="panel-heading">첨부파일</div>
+							<div class="panel-body">
+								<div class="uploadResult">
+									<ul>
+									</ul>
+								</div>
+								<!-- <button id="uploadBtn">Upload</button> -->
+							</div>
+						</div>
+					</div>
+				</div>
+	
+
+				<button data-oper="modify" class="btn btn-default"
+					onclick="location.href='./getModifyFree?freeBno=<c:out value="${info.freeBno }"/>'">수정</button>
+				<button data-oper="list" class="btn btn-info" onclick="location.href='./free'">목록</button>
+				<button data-oper="delete" class="btn btn-default" onclick="location.href='./deleteFree?freeBno=<c:out value="${info.freeBno }"/>'">삭제</button>	
+
 			</div>
+			<!-- end panel-body -->
 		</div>
+		<!-- end pane-body -->
 	</div>
+	<!-- end panel -->
+</div>
 
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
-
+	
+	
+	
+	</script>
 </body>
 </html>
