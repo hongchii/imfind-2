@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.spring.mapper.FreeMapper">
+    
+    <insert id="replyInsert_f">
+    	
+    	insert into imfind.FreeReply (rno, bno, reply_f, replyer_f, reply_f_date)
+    	values (#{rno}, #{bno}, #{reply_f}, #{replyer_f}, now())
+    	
+    </insert>
+    
+    <select id="getReply_f" resultType="com.spring.el.domain.FreeReplyVO">
+    	select * from imfind.FreeReply where rno = #{rno}
+    </select>
+    
+    </mapper>
