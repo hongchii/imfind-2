@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.imfind.el.domain.NoticeAttachVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
 import com.spring.mapper.NoticeAttachMapper;
@@ -138,7 +138,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public List<NoticeAttachVO> getAttachList(int bno) throws Exception {
+	public List<AttachVO> getAttachList(int bno) throws Exception {
 		
 		System.out.println("get Attach list by bno" + bno);
 		

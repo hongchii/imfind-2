@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.imfind.el.domain.FreeVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.paging.Criteria;
 
 public interface FreeService {
 	
 	public List<Map<String, Object>> getFreeList(Criteria cri) throws Exception;
 	
-	public int freeInsert(FreeVO vo) throws Exception;
+	public void freeInsert(FreeVO vo) throws Exception;
 	
 	public FreeVO getFreeInfo(int freeBno) throws Exception;
 	
@@ -21,4 +22,6 @@ public interface FreeService {
 	public int getFreeCount() throws Exception;
 	
 	public int freeArrDelete(int freeBno) throws Exception;
+	
+	public List<AttachVO> getAttachList(int bno) throws Exception;
 }

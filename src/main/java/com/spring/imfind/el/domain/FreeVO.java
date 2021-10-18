@@ -1,5 +1,7 @@
 package com.spring.imfind.el.domain;
 
+import java.util.List;
+
 public class FreeVO {
 
 	private int freeBno; // 글번호
@@ -9,7 +11,9 @@ public class FreeVO {
 	private String freeDate; // 글작성일
 	private int readcount; // 조회수
 	private String delYN; // 삭제여부
-
+	
+	private List<AttachVO> attachList;
+	
 	public int getFreeBno() {
 		return freeBno;
 	}
@@ -65,6 +69,15 @@ public class FreeVO {
 	public void setDelYN(String delYN) {
 		this.delYN = delYN;
 	}
+	
+	public List<AttachVO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<AttachVO> attachList) {
+		this.attachList = attachList;
+	}
+
 
 	@Override
 	public String toString() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.imfind.el.domain.FreeVO;
+import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
 
 public interface FreeMapper {
@@ -23,4 +24,6 @@ public interface FreeMapper {
 	public int getFreeCount() throws Exception;
 	
 	public int freeArrDelete(int freeBno) throws Exception;
+	
+	public void insertSelectKey(FreeVO vo);
 }

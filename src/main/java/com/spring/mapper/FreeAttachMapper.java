@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.spring.imfind.el.domain.AttachVO;
 
-public interface NoticeAttachMapper {
+public interface FreeAttachMapper {
 	
 	public void insert(AttachVO vo);
 	

@@ -12,7 +12,7 @@ public class NoticeVO {
 	private int readcount; // 조회수
 	private String delYN; // 삭제여부
 
-	private List<NoticeAttachVO> attachList;
+	private List<AttachVO> attachList;
 
 	public int getNoticeBno() {
 		return noticeBno;
@@ -70,11 +70,11 @@ public class NoticeVO {
 		this.delYN = delYN;
 	}
 
-	public List<NoticeAttachVO> getAttachList() {
+	public List<AttachVO> getAttachList() {
 		return attachList;
 	}
 
-	public void setAttachList(List<NoticeAttachVO> attachList) {
+	public void setAttachList(List<AttachVO> attachList) {
 		this.attachList = attachList;
 	}
 

@@ -1,5 +1,8 @@
 package com.spring.imfind.el.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.imfind.el.domain.FreeVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.paging.Criteria;
 import com.spring.imfind.el.paging.PageMaker;
 import com.spring.imfind.el.service.FreeService;
@@ -141,5 +148,39 @@ public class FreeController {
 		return map;
 
 	}
+	
 
+	@GetMapping(value = "/getAttachList_f", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AttachVO>> getAttachList(int bno) throws Exception {
+		
+		System.out.println("getAttachList_free :: " + bno);
+		
+		return new ResponseEntity<>(freeService.getAttachList(bno), HttpStatus.OK);
+	}
+	
+	private void deleteFiles(List<AttachVO> attachList) {
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		System.out.println("delete attach files-----");
+		System.out.println(attachList);
+		
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("/Users/hongmac/Documents/upload/temp/"+attach.getUploadPath()+"/"+attach.getUuid()+"/"+attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("/Users/hongmac/Documents/upload/temp/"+attach.getUploadPath()+"/"+attach.getUuid()+"/"+attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}
+			} catch(Exception e) {
+				System.out.println("delete file error" + e.getMessage());
+			}
+		});
+	}
 }

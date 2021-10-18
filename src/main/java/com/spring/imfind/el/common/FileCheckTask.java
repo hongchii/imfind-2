@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.spring.imfind.el.domain.NoticeAttachVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.mapper.NoticeAttachMapper;
 
 public class FileCheckTask {
@@ -38,7 +38,7 @@ public class FileCheckTask {
 		
 		// file list in database
 		NoticeAttachMapper attachMapper = sqlSession.getMapper(NoticeAttachMapper.class);
-		List<NoticeAttachVO> fileList = attachMapper.getOldFiles();
+		List<AttachVO> fileList = attachMapper.getOldFiles();
 		
 		// ready for check file in directory with database file list
 		List<Path> fileListPaths = fileList.stream().map(vo -> Paths.get("/Users/hongmac/Documents/upload/temp/", vo.getUploadPath(), vo.getUuid() + "_" + vo.getFileName())).collect(Collectors.toList());

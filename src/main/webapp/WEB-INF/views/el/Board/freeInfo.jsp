@@ -141,6 +141,42 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
+	<script>
+	$(document).ready(function(){
+		(function(){
+			
+			var bno = '<c:out value="${info.freeBno }"/>';
+			
+			$.getJSON("/getAttachList_f",{bno : bno}, function(arr){
+				console.log(arr);
+				
+				var str = "";
+				
+				$(arr).each(function(i, attach){
+					
+				//image type
+				if(attach.fileType){
+					var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+					
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid'"+attach.uuid+"'data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str += "</li>";
+				} else {
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid'"+attach.uuid+"'data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+					str += "<span>" + attach.fileName+"</span><br/>"
+					str += "<img src='/resources/img/attach.png'>";
+					str += "</div>";
+					str += "</li>";
+				}
+				});
+				
+				$(".uploadResult ul").html(str);
+			}); // end getJSON
+		})(); // end function 
+		
+		
+	}); // end document ready
 	
 	
 	

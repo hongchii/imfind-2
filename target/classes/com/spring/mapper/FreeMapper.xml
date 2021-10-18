@@ -4,11 +4,20 @@
 
     <mapper namespace="com.spring.mapper.FreeMapper">
     
-    <select id="getFreeList" resultType="com.spring.imfind.el.domain.FreeVO">
+<!--     <select id="getFreeList" resultType="com.spring.imfind.el.domain.FreeVO">
 	   	SELECT * From imfind.FreeBoard WHERE delYN = "1" order by freeBno desc limit #{pageStart}, #{perPageNum}
-   	</select>
+   	</select> -->
     
     <insert id="freeInsert" >
+    	INSERT INTO imfind.FreeBoard
+			(freeBno, freeTitle, id, freeDate, freeContent, delYN)
+		VALUES(#{freeBno}, #{freeTitle}, #{id}, now(), #{freeContent}, #{delYN})
+    </insert>
+    
+    <insert id="insertSelectKey">
+    	<selectKey resultType="int" keyProperty="freeBno" order="BEFORE">
+    		SELECT MAX(freeBno)+1 FROM imfind.FreeBoard
+    	</selectKey>
     	INSERT INTO imfind.FreeBoard
 			(freeBno, freeTitle, id, freeDate, freeContent, delYN)
 		VALUES(#{freeBno}, #{freeTitle}, #{id}, now(), #{freeContent}, #{delYN})
@@ -17,6 +26,7 @@
     <select id="getFreeCount" resultType="Integer">
     	<![CDATA[ SELECT count(*) From imfind.FreeBoard WHERE delYN = "1" ]]>
     </select>
+    
     <select id="getFreeInfo" resultType="com.spring.imfind.el.domain.FreeVO">
     	SELECT * From imfind.FreeBoard WHERE freeBno = #{freeBno}
     </select>
@@ -38,5 +48,46 @@
     <update id="freeArrDelete" parameterType="int">
    		UPDATE imfind.FreeBoard SET delYN="0" WHERE freeBno=#{freeBno}
   	</update>  
+    
+    <!-- 검색 -->
+   	
+	<sql id="criteria">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type == 'T'.toString()">
+						freeTitle like CONCAT('%',#{keyword},'%')
+					</when>
+					<when test="type == 'C'.toString()">
+						freeContent like CONCAT('%',#{keyword},'%')
+					</when>
+				</choose>	
+			</trim>
+		</foreach>
+	</trim>
+	</sql> 
+
+  	<select id="getFreeList" resultType="com.spring.imfind.el.domain.FreeVO">
+  		<![CDATA[
+  			 SELECT freeBno, freeTitle, freeContent, id, freeDate FROM 
+  			 	imfind.FreeBoard
+  			WHERE 
+  		]]>
+		<include refid="criteria"></include>  			
+		
+		<![CDATA[
+			delYN = "1" and freeBno > 0
+			order by freeBno desc limit #{pageStart}, #{perPageNum}
+		]]>
+		
+  	</select>
+    
+    <select id="getTotalCount" resultType="int">
+	    select count(*) from imfind.FreeBoard 
+	    where
+	    <include refid="criteria"></include> 
+	    freeBno > 0	
+    </select>
     
     </mapper>

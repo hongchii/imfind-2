@@ -3,7 +3,7 @@ package com.spring.imfind.el.service;
 import java.util.List;
 import java.util.Map;
 
-import com.spring.imfind.el.domain.NoticeAttachVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
 
@@ -23,5 +23,5 @@ public interface NoticeService {
 	
 	public int noticeArrDelete(int noticeBno) throws Exception;
 	
-	public List<NoticeAttachVO> getAttachList(int bno) throws Exception;
+	public List<AttachVO> getAttachList(int bno) throws Exception;
 }

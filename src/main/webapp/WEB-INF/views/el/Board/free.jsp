@@ -98,7 +98,7 @@
 				</div>
 				
 				<button data-oper="create" class="btn btn-default"
-					onclick="location.href='./insert'">등록</button>
+					onclick="location.href='./freeInsert'">등록</button>
 				<button data-oper="delete" class="btn btn-default"
 					onclick="check();">삭제</button>	
 										

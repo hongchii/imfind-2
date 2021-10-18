@@ -14,7 +14,7 @@
      delete from imfind.FileAttach where uuid = #{uuid} 
      </delete>
      
-     <select id="findByBno" resultType="com.spring.imfind.el.domain.NoticeAttachVO">
+     <select id="findByBno" resultType="com.spring.imfind.el.domain.AttachVO">
      select * from imfind.FileAttach where bno = #{bno}
      </select>
      
@@ -22,7 +22,7 @@
      delete from imfind.FileAttach where bno = #{bno}
      </delete>
      
-     <select id="getOldFiles" resultType="com.spring.imfind.el.domain.NoticeAttachVO">
+     <select id="getOldFiles" resultType="com.spring.imfind.el.domain.AttachVO">
      select * from imfind.FileAttach where uploadpath = to_char(now() - 1, 'yyyy\mm\dd')
      </select>
      </mapper>

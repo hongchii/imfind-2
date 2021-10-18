@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.imfind.el.domain.FreeVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.paging.Criteria;
+import com.spring.mapper.FreeAttachMapper;
 import com.spring.mapper.FreeMapper;
+import com.spring.mapper.NoticeAttachMapper;
 
 @Service("freeService")
 public class FreeServiceImpl implements FreeService {
@@ -30,16 +33,32 @@ public class FreeServiceImpl implements FreeService {
 		return freeList;
 		
 	}
-
+	
+	@Transactional
 	@Override
-	public int freeInsert(FreeVO vo) throws Exception {
+	public void freeInsert(FreeVO vo) throws Exception {
 		
 		System.out.println("---------->>>>> free insert serviceImpl----------------");
 		
 		FreeMapper freeMapper = sqlSession.getMapper(FreeMapper.class);
-		int res = freeMapper.freeInsert(vo);
+		FreeAttachMapper attachMapper = sqlSession.getMapper(FreeAttachMapper.class);
 		
-		return res;
+		freeMapper.insertSelectKey(vo);
+		
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		vo.getAttachList().forEach(attach -> {
+			attach.setBno(vo.getFreeBno());
+			attachMapper.insert(attach);
+			System.out.println("free Insert ServiceImpl");
+		});
+		
+		
+		//int res = freeMapper.freeInsert(vo);
+		
+		return;
 	}
 
 	@Transactional(isolation = Isolation.READ_COMMITTED)
@@ -98,5 +117,14 @@ public class FreeServiceImpl implements FreeService {
 		
 		return res;
 	}
-
+	
+	@Override
+	public List<AttachVO> getAttachList(int bno) throws Exception {
+		
+		System.out.println("get Attach list by bno" + bno);
+		
+		FreeAttachMapper attachMapper = sqlSession.getMapper(FreeAttachMapper.class);
+		
+		return attachMapper.findByBno(bno);
+	}
 }

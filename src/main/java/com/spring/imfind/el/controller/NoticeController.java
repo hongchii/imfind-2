@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.imfind.el.domain.NoticeAttachVO;
+import com.spring.imfind.el.domain.AttachVO;
 import com.spring.imfind.el.domain.NoticeVO;
 import com.spring.imfind.el.paging.Criteria;
 import com.spring.imfind.el.paging.PageMaker;
@@ -122,7 +122,7 @@ public class NoticeController {
 		
 		vo.setDelYN("0");
 		
-		List<NoticeAttachVO> attachList = noticeService.getAttachList(vo.getNoticeBno());
+		List<AttachVO> attachList = noticeService.getAttachList(vo.getNoticeBno());
 	
 		int res = noticeService.noticeDelete(vo);
 		
@@ -147,7 +147,7 @@ public class NoticeController {
 
 			int noticeBno1 = Integer.parseInt(bno);
 			int res = noticeService.noticeArrDelete(noticeBno1);
-			List<NoticeAttachVO> attachList = noticeService.getAttachList(noticeBno1);
+			List<AttachVO> attachList = noticeService.getAttachList(noticeBno1);
 			System.out.println("delete attachList :: " + attachList);
 			deleteFiles(attachList);
 			
@@ -179,14 +179,14 @@ public class NoticeController {
 	
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<NoticeAttachVO>> getAttachList(int bno) throws Exception {
+	public ResponseEntity<List<AttachVO>> getAttachList(int bno) throws Exception {
 		
 		System.out.println("getAttachList :: " + bno);
 		
 		return new ResponseEntity<>(noticeService.getAttachList(bno), HttpStatus.OK);
 	}
 	
-	private void deleteFiles(List<NoticeAttachVO> attachList) {
+	private void deleteFiles(List<AttachVO> attachList) {
 		if(attachList == null || attachList.size() == 0) {
 			return;
 		}

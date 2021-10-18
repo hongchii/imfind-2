@@ -66,7 +66,6 @@
 						</div>
 					</div>
 				</div>
-				
 				<button type="submit" class="btn btn-default">등록</button>
 				</div>
 				<!-- end panel-body -->

@@ -1,6 +1,6 @@
 package com.spring.imfind.el.domain;
 
-public class NoticeAttachVO {
+public class AttachVO {
 	private String uuid;
 	private String uploadPath;
 	private String fileName;
@@ -49,7 +49,7 @@ public class NoticeAttachVO {
 
 	@Override
 	public String toString() {
-		return "NoticeAttachVO [uuid=" + uuid + ", uploadPath=" + uploadPath + ", fileName=" + fileName + ", fileType="
+		return "AttachVO [uuid=" + uuid + ", uploadPath=" + uploadPath + ", fileName=" + fileName + ", fileType="
 				+ fileType + ", bno=" + bno + "]";
 	}
 
