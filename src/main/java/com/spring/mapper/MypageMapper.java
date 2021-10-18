@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.spring.imfind.el.domain.MypageVO;
 
-public interface ElMapper {
+public interface MypageMapper {
 	List<MypageVO> getElsedata(String id);
 
 	List<MypageVO> getPetElsedata(String id);

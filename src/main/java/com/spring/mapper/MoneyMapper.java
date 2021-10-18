@@ -3,7 +3,7 @@ package com.spring.mapper;
 
 import java.util.List;
 
-import com.spring.imfind.el.money.PayDTO;
+import com.spring.imfind.el.Money.PayDTO;
 
 public interface MoneyMapper {
 	public List<PayDTO> getMoneyList(String id);

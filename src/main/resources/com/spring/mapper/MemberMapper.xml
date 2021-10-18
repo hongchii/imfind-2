@@ -46,7 +46,7 @@
 	</update>
 
 	<insert id="insertMember"
-		parameterType="com.spring.imfind.el.YH.LoginDTO">
+		parameterType="com.spring.imfind.el.domain.LoginDTO">
 		INSERT INTO member
 		(
 		id,

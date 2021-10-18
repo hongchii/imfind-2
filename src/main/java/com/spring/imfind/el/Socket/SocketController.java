@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.socket;
+package com.spring.imfind.el.Socket;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

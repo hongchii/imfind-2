@@ -179,7 +179,7 @@
 		delete from liketo WHERE id=#{id} AND lost_postnum=#{lost_PostNum}
 	</delete>
 
-	<select id="likeChk" resultType="ElVO">
+	<select id="likeChk" resultType="MypageVO">
 		select * from liketo
 	</select>
 	<select id="likeCount" resultType="int">

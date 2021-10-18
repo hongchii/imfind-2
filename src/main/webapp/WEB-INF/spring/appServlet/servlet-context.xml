@@ -35,9 +35,9 @@
 
 	
 	<!-- 인터셉터 설정 유희-->
-	<beans:bean id="LoginInterceptor" class="com.spring.imfind.el.YH.LoginInterceptor"></beans:bean>
-	<beans:bean id="KakaoLoginInterceptor" class="com.spring.imfind.el.YH.KakaoLoginInterceptor"></beans:bean>
-	<beans:bean id="AuthInterceptor" class="com.spring.imfind.el.YH.AuthInterceptor"></beans:bean>
+	<beans:bean id="LoginInterceptor" class="com.spring.imfind.el.common.LoginInterceptor"></beans:bean>
+	<beans:bean id="KakaoLoginInterceptor" class="com.spring.imfind.el.common.KakaoLoginInterceptor"></beans:bean>
+	<beans:bean id="AuthInterceptor" class="com.spring.imfind.el.common.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>

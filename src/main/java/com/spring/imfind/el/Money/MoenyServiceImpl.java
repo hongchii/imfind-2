@@ -1,4 +1,4 @@
-package com.spring.imfind.el.money;
+package com.spring.imfind.el.Money;
 
 import java.util.List;
 

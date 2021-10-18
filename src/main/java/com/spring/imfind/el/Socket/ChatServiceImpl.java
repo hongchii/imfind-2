@@ -1,5 +1,5 @@
 
-package com.spring.imfind.el.socket;
+package com.spring.imfind.el.Socket;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
