@@ -15,4 +15,16 @@
     	select * from imfind.FreeReply where rno = #{rno}
     </select>
     
+    <delete id="delete_f">
+    	delete from imfind.FreeReply where rno = #{rno}
+    </delete>
+    
+    <update id="modify_f">
+    	update imfind.FreeReply set reply_f = #{reply_f}, where rno = #{rno}
+    </update>
+    
+    <select id="getListWithPaging" resultType="com.spring.el.domain.FreeReplyVO">
+    	select rno, bno, reply_f, replyer_f, reply_f_date from imfind.FreeReply
+    	where bno = #{bno} order by rno
+    </select>
     </mapper>
