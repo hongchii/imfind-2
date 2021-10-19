@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <mapper namespace="com.spring.mapper.FreeMapper">
+    <mapper namespace="com.spring.mapper.FreeReplyMapper">
     
     <insert id="replyInsert_f">
     	
@@ -11,7 +11,7 @@
     	
     </insert>
     
-    <select id="getReply_f" resultType="com.spring.el.domain.FreeReplyVO">
+    <select id="getReply_f" resultType="com.spring.imfind.el.domain.FreeReplyVO">
     	select * from imfind.FreeReply where rno = #{rno}
     </select>
     
@@ -23,7 +23,7 @@
     	update imfind.FreeReply set reply_f = #{reply_f}, where rno = #{rno}
     </update>
     
-    <select id="getListWithPaging" resultType="com.spring.el.domain.FreeReplyVO">
+    <select id="getListWithPaging" resultType="com.spring.imfind.el.domain.FreeReplyVO">
     	select rno, bno, reply_f, replyer_f, reply_f_date from imfind.FreeReply
     	where bno = #{bno} order by rno
     </select>

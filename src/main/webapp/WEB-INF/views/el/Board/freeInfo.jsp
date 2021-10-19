@@ -141,11 +141,21 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
+	<script type="text/javascript" src="/resources/el/js/Board/freeReply.js"></script>
 	<script>
 	$(document).ready(function(){
+		
 		(function(){
 			
+			
 			var bno = '<c:out value="${info.freeBno }"/>';
+
+			replyService.add(
+				{reply_f: "JS Test", replyer_f : "tester", bno : bno},
+				function(result){
+					alert("RESULT: " + result)
+				}
+			);
 			
 			$.getJSON("/getAttachList_f",{bno : bno}, function(arr){
 				console.log(arr);

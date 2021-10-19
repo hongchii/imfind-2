@@ -11,7 +11,7 @@ public interface FreeReplyMapper {
 	
 	public int replyInsert_f(FreeReplyVO vo);
 	
-	public FreeReplyVO getReply_f(int bno);
+	public FreeReplyVO getReply_f(int rno);
 	
 	public int modify_f(FreeReplyVO vo);
 

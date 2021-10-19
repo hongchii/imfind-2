@@ -26,12 +26,12 @@ public class FreeReplyServiceImpl implements FreeReplyService {
 	}
 
 	@Override
-	public FreeReplyVO getReply_f(int bno) {
+	public FreeReplyVO getReply_f(int rno) {
 		
-		System.out.println("reply getReply .........." + bno);
+		System.out.println("reply getReply .........." + rno);
 		FreeReplyMapper freeReplyMapper = sqlSession.getMapper(FreeReplyMapper.class);
 		
-		return freeReplyMapper.getReply_f(bno);
+		return freeReplyMapper.getReply_f(rno);
 	}
 
 	@Override

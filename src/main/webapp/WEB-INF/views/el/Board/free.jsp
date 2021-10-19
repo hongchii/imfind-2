@@ -141,8 +141,9 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 	<!-- Header End -->
-
-	<script>
+	
+	
+	<script type="text/javascript">
 	function check() {
 			
 		var confirm_val = confirm("정말 삭제하시겠습니까?");
