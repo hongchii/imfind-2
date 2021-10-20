@@ -20,7 +20,7 @@
     </delete>
     
     <update id="modify_f">
-    	update imfind.FreeReply set reply_f = #{reply_f}, where rno = #{rno}
+    	update imfind.FreeReply set reply_f = #{reply_f} where rno = #{rno}
     </update>
     
     <select id="getListWithPaging" resultType="com.spring.imfind.el.domain.FreeReplyVO">

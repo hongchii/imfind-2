@@ -149,14 +149,45 @@
 			
 			
 			var bno = '<c:out value="${info.freeBno }"/>';
-
+	/*
 			replyService.add(
 				{reply_f: "JS Test", replyer_f : "tester", bno : bno},
 				function(result){
 					alert("RESULT: " + result)
 				}
 			);
+	
+	
+			replyService.getList( { bno : bno, page : 1}, function(list){
+				for(var i = 0, len = list.length || 0; i < len; i++){
+					//debugger;
+					console.log("댓글리스트확인 : " + list[i]);
+				}
+			});
+	
+			replyService.remove( 4, function(count) {
+				console.log("count :: " + count);
+				
+				if(count === "success"){
+					alert("댓글 삭제!");
+				}
+			}, function(err){
+				alert('에러');
+			});
+	*/		
+			replyService.update({
+				rno : 2,
+				bno : bno,
+				reply_f : " 댓글 수정"
+			}, function(result){
+				alert("수정완료.")
+				
+			});
 			
+			replyService.get(2, function(data){
+				console.log("댓글 get :: " + data);
+			});
+	
 			$.getJSON("/getAttachList_f",{bno : bno}, function(arr){
 				console.log(arr);
 				

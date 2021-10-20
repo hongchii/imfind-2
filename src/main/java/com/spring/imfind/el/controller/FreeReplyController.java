@@ -1,3 +1,9 @@
+
+
+
+
+
+
 package com.spring.imfind.el.controller;
 
 import java.util.List;
@@ -36,11 +42,13 @@ public class FreeReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@GetMapping(value = "/pages/ {bno} / {page}", produces = { MediaType.APPLICATION_ATOM_XML_VALUE,
+	@GetMapping(value = "/pages/{bno}/{page}", produces = { MediaType.APPLICATION_ATOM_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<FreeReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") int bno) {
-		System.out.println("getList...");
-		Criteria cri = new Criteria(page, 10);
+		System.out.println("댓글댓글getList...");
+		Criteria cri = new Criteria();
+		cri.setPage(page);
+		cri.setPerPageNum(10);
 
 		return new ResponseEntity<>(freeReplyService.getList(cri, bno), HttpStatus.OK);
 	}
