@@ -1,9 +1,3 @@
-
-
-
-
-
-
 package com.spring.imfind.el.controller;
 
 import java.util.List;
@@ -46,10 +40,11 @@ public class FreeReplyController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<FreeReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") int bno) {
 		System.out.println("댓글댓글getList...");
+		
 		Criteria cri = new Criteria();
 		cri.setPage(page);
 		cri.setPerPageNum(10);
-
+		
 		return new ResponseEntity<>(freeReplyService.getList(cri, bno), HttpStatus.OK);
 	}
 

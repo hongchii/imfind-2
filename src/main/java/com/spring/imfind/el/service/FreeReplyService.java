@@ -16,4 +16,5 @@ public interface FreeReplyService {
 	public int delete_f(int rno);
 	
 	public List<FreeReplyVO> getList(Criteria cri, int bno);
+	
 }

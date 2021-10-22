@@ -27,4 +27,5 @@
     	select rno, bno, reply_f, replyer_f, reply_f_date from imfind.FreeReply
     	where bno = #{bno} order by rno
     </select>
+  
     </mapper>

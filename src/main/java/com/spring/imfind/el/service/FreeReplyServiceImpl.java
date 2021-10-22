@@ -60,5 +60,5 @@ public class FreeReplyServiceImpl implements FreeReplyService {
 		
 		return freeReplyMapper.getListWithPaging(cri, bno);
 	}
-
+	
 }

@@ -18,4 +18,5 @@ public interface FreeReplyMapper {
 	public int delete_f (int rno);
 	
 	public List<FreeReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("bno") int bno);
+	
 }
