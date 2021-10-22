@@ -240,32 +240,7 @@
 						replyUL.html(str);
 					});
 				}
-	/* 
-			
 	
-			
-	
-			replyService.remove( 4, function(count) {
-				console.log("count :: " + count);
-				
-				if(count === "success"){
-					alert("댓글 삭제!");
-				}
-			}, function(err){
-				alert('에러');
-			});
-			replyService.update({
-				rno : 2,
-				bno : bno,
-				reply_f : " 댓글 수정"
-			}, function(result){
-				alert("수정완료.")
-				
-			});
-			
-		
-	
-	*/		
 			// 댓글 모달
 			var modal = $(".modal");
 		    var modalInputReply = modal.find("input[name='reply_f']");
@@ -296,7 +271,7 @@
 		    	
 		    	replyService.add(reply, function(result){
 		    		
-		    		alert(result);
+		    		alert("댓글을 등록했습니다.");
 		    		
 		    		modal.find("input").val("");
 		    		modal.modal("hide");
@@ -324,7 +299,32 @@
 				});
 		  	});
 		  	
+		  	modalModBtn.on("click", function(e){
+		  		var reply = {rno:modal.data("rno"), reply_f: modalInputReply.val()};
+		  		
+		  		replyService.update(reply, function(result){
+					
+		  			alert("댓글을 수정했습니다.");
+		  			modal.modal("hide");
+		  			showList(1);
+				});
+		  	});
 		  	
+		  	modalRemoveBtn.on("click", function(e){
+		  		var rno = modal.data("rno");
+
+				replyService.remove(rno, function(result){
+					
+					alert("댓글을 삭제했습니다.");
+					modal.modal("hide");
+					showList(1);
+				});
+				
+		  	})
+		  	
+		  	
+		  	
+		  	// 첨부 파일
 		    $.getJSON("/getAttachList_f",{bno : bno}, function(arr){
 				console.log(arr);
 				
